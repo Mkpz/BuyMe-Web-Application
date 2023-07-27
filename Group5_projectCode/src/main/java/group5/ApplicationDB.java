@@ -1,7 +1,8 @@
 package group5;
 
+
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.DriverManager; 
 import java.sql.SQLException;
 
 public class ApplicationDB {
@@ -10,10 +11,11 @@ public class ApplicationDB {
 		
 	}
 
+	@SuppressWarnings("deprecation")
 	public Connection getConnection(){
 		
 		//Create a connection string
-		String connectionUrl = "jdbc:mysql://localhost:3306/BarBeerDrinkerSample";
+		String connectionUrl = "jdbc:mysql://localhost:3306/BuyMe";
 		Connection connection = null;
 		
 		try {
