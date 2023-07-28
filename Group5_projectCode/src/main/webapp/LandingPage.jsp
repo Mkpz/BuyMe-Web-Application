@@ -31,6 +31,32 @@
 		
 		</form>
 	 </div>
+	 
+	<h2>Register here</h2> 
+	<br>
+		<form method="post" action="newBarBeerPrice.jsp">
+		<table>
+		<tr>    
+		<td>Name:</td><td><input type="text" name="name"></td>
+		</tr>
+		<tr>
+		<td>Phone number:</td><td><input type="text" name="phonenumber"></td>
+		</tr>
+		<tr>
+		<td>Username:</td><td><input type="text" name="username"></td>
+		</tr>
+		
+		<tr>
+		<td>Password:</td><td><input type="password" name="password"></td>
+		</tr>
+		<br>
+		
+		</table>
+		<input type="submit" value="Register">
+		</form>
+	<br>
+	
+	
 </body>
 </html> 
 
