@@ -15,7 +15,7 @@
 	<div id="login-container" >
 		<h2>Login Here!</h2>
 		
-		<form action="show.jsp" method = "post">
+		<form action="LoginRedirect.jsp" method = "post">
 		<label for="username">User name:</label>
 		<input type="text" id="username" name="username">
 		
@@ -34,7 +34,7 @@
 	 
 	<h2>Register here</h2> 
 	<br>
-		<form method="post" action="newBarBeerPrice.jsp">
+		<form method="post" action="RegisterRedirect.jsp">
 		<table>
 		<tr>    
 		<td>Name:</td><td><input type="text" name="name"></td>
