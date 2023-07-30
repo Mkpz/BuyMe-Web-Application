@@ -500,7 +500,6 @@ CREATE TABLE `top` (
   `manufacture_id`  varchar(4) NOT NULL DEFAULT '0000',
   `brand` varchar(50),
   PRIMARY KEY (`manufacture_id`),
-  FOREIGN KEY (`brand`) REFERENCES `clothes` (`brand`),
   FOREIGN KEY (`manufacture_id`) REFERENCES `clothes` (`manufacture_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -529,7 +528,6 @@ CREATE TABLE `bottoms` (
   `manufacture_id`  varchar(4) NOT NULL DEFAULT '0000',
   `brand` varchar(50),
   PRIMARY KEY (`manufacture_id`),
-  FOREIGN KEY (`brand`) REFERENCES `clothes` (`brand`),
   FOREIGN KEY (`manufacture_id`) REFERENCES `clothes` (`manufacture_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -558,7 +556,6 @@ CREATE TABLE `footwear` (
   `manufacture_id`  varchar(4) NOT NULL DEFAULT '0000',
   `brand` varchar(50),
   PRIMARY KEY (`manufacture_id`),
-  FOREIGN KEY (`brand`) REFERENCES `clothes` (`brand`),
   FOREIGN KEY (`manufacture_id`) REFERENCES `clothes` (`manufacture_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
