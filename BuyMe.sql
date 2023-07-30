@@ -27,6 +27,8 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `user_id` varchar(4) NOT NULL DEFAULT '0000',
+  `email` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,7 +39,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('0001');
+INSERT INTO `users` VALUES ('0001', 'map616@cs', 'password123');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,8 +80,6 @@ DROP TABLE IF EXISTS `end_user`;
 CREATE TABLE `end_user` (
   `end_user_id` varchar(4) NOT NULL DEFAULT '0000',
   `user_id` varchar(4) NOT NULL DEFAULT '0000',
-  `email` varchar(50) DEFAULT NULL,
-  `password` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`end_user_id`, `user_id`),
   FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -91,7 +91,7 @@ CREATE TABLE `end_user` (
 
 LOCK TABLES `end_user` WRITE;
 /*!40000 ALTER TABLE `end_user` DISABLE KEYS */;
-INSERT INTO `end_user` VALUES ('1', '0001', 'map616@cs', 'password123');
+INSERT INTO `end_user` VALUES ('1', '0001');
 /*!40000 ALTER TABLE `end_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -578,6 +578,3 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
-
--- Dump completed on 2018-07-10 13:49:53
