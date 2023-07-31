@@ -498,7 +498,6 @@ CREATE TABLE `top` (
   `size` varchar(15),
   `sleeve_length_inches` int,
   `manufacture_id`  varchar(4) NOT NULL DEFAULT '0000',
-  `brand` varchar(50),
   PRIMARY KEY (`manufacture_id`),
   FOREIGN KEY (`manufacture_id`) REFERENCES `clothes` (`manufacture_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -510,7 +509,7 @@ CREATE TABLE `top` (
 
 LOCK TABLES `top` WRITE;
 /*!40000 ALTER TABLE `top` DISABLE KEYS */;
-INSERT INTO `top` VALUES ('None', 'Medium', 41, '0001', 'Adidas'); 
+INSERT INTO `top` VALUES ('None', 'Medium', 41, '0001'); 
 /*!40000 ALTER TABLE `top` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -526,7 +525,6 @@ CREATE TABLE `bottoms` (
   `waist_length` varchar(15),
   `rise_type` varchar(15),
   `manufacture_id`  varchar(4) NOT NULL DEFAULT '0000',
-  `brand` varchar(50),
   PRIMARY KEY (`manufacture_id`),
   FOREIGN KEY (`manufacture_id`) REFERENCES `clothes` (`manufacture_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -538,7 +536,7 @@ CREATE TABLE `bottoms` (
 
 LOCK TABLES `bottoms` WRITE;
 /*!40000 ALTER TABLE `bottoms` DISABLE KEYS */;
-INSERT INTO `bottoms` VALUES ('Jean', 32, 'Normal', '0001', 'Adidas'); 
+INSERT INTO `bottoms` VALUES ('Jean', 32, 'Normal', '0001'); 
 /*!40000 ALTER TABLE `bottoms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -554,7 +552,6 @@ CREATE TABLE `footwear` (
   `size` int,
   `lace_color` varchar(15),
   `manufacture_id`  varchar(4) NOT NULL DEFAULT '0000',
-  `brand` varchar(50),
   PRIMARY KEY (`manufacture_id`),
   FOREIGN KEY (`manufacture_id`) REFERENCES `clothes` (`manufacture_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -566,7 +563,7 @@ CREATE TABLE `footwear` (
 
 LOCK TABLES `footwear` WRITE;
 /*!40000 ALTER TABLE `footwear` DISABLE KEYS */;
-INSERT INTO `footwear` VALUES ('Sneaker', 10, 'Blue', '0001', 'Adidas'); 
+INSERT INTO `footwear` VALUES ('Sneaker', 10, 'Blue', '0001'); 
 /*!40000 ALTER TABLE `footwear` ENABLE KEYS */;
 UNLOCK TABLES;
 
