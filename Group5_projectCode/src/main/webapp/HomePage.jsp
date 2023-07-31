@@ -11,6 +11,10 @@
 
     <h1>Welcome!</h1>
     <p>You have logged in!</p>
+    
+    <form action="LandingPage.jsp" method="post">
+        <input type="submit" value="Logout">
+    </form>
 
 </body>
 </html>
