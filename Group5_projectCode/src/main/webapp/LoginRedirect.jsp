@@ -34,7 +34,8 @@
 				// Valid login, redirect to another JSP page (e.g., home.jsp)
 				response.sendRedirect("HomePage.jsp");
 				session.setAttribute("username", rs.getString("username")
-				session.setAttribute("usertype", rs.getString("usertype"));
+				//session.setAttribute("usertype", rs.getString("usertype")//
+						);
 				
 			}
 			else {

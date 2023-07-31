@@ -49,7 +49,7 @@
 		<tr>
 		<td>Password:</td><td><input type="password" name="password"></td>
 		</tr>
-		<br>
+		
 		
 		</table>
 		<input type="submit" value="Register">
