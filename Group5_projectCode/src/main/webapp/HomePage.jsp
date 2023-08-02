@@ -20,7 +20,7 @@
 	
 	  <!-- Header for selling a bottom -->
 	  <h1>Sell Bottoms!</h1>
-	  <form action="auction_items.jsp" method="post">
+	  <form action="AuctionItems.jsp" method="post">
 	    <label for="pants_type">Type:</label>
 	    <input type="text" id="pants_type" name="type" required><br>
 	
@@ -38,7 +38,7 @@
 	  
 	  <!-- Header for selling a top -->
 	  <h1>Sell Tops!</h1>
-	  <form action="auction_items.jsp" method="post">
+	  <form action="AuctionItems.jsp" method="post">
 	    <label for="type_of_collar">Collar Type:</label>
 	    <input type="text" id="pants_type" name="type" required><br>
 	
@@ -56,7 +56,7 @@
 	  
 	  <!-- Header for selling footwear -->
 	  <h1>Sell Footwear!</h1>
-	  <form action="auction_items.jsp" method="post">
+	  <form action="AuctionItems.jsp" method="post">
 	    <label for="type_of_footwear">Shoe Style:</label>
 	    <input type="text" id="type_of_footwear" name="type" required><br>
 	
