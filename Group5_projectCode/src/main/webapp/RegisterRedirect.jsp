@@ -30,7 +30,8 @@
 			ps.setString(2, password);
 			
 			
-			if (username != null && password != null && name != null && phonenumber != null) {
+			
+			if (username != "" && password != "" && name != "" && phonenumber != "") {
 				// Valid login, redirect to another JSP page (e.g., home.jsp)
 				// Execute the query
 				ps.executeUpdate();
