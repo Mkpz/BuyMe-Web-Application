@@ -24,20 +24,33 @@
 			
    	    	// Query to check if the username and password match
 			String query = "SELECT * FROM users WHERE username = ? AND password = ?";
-			PreparedStatement ps = con.prepareStatement(query);
+   	    
+   	    	PreparedStatement ps = con.prepareStatement(query);	
+			//prepare the statements
 			ps.setString(1, username);
 			ps.setString(2, password);
 			
-			// Execute the query
+			// Execute the querys
 			ResultSet rs = ps.executeQuery();
 			
 			if (rs.next()) {
 				// Valid login, redirect to another JSP page (e.g., home.jsp)
-				response.sendRedirect("HomePage.jsp");
-				session.setAttribute("username", rs.getString("username")
+				//extract the type from the query
+				String userType = rs.getString("user_type");
+				session.setAttribute("username", rs.getString("username"));
+		
+				if(userType.equalsIgnoreCase("END")) {
+					// end user case
+					response.sendRedirect("HomePage.jsp");
+				} else if(userType.equalsIgnoreCase("ADMIN")) {
+					// admin case
+					response.sendRedirect("AdminHomePage.jsp");
+				} else {
+					// customer rep case
+					response.sendRedirect("CustomerRepHomePage.jsp");
+				}
 				//session.setAttribute("usertype", rs.getString("usertype")//
-						);
-				
+
 			}
 			else {
 				// Invalid login, redirect back to the login page
@@ -49,7 +62,7 @@
 			con.close();
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			out.print(e);
 			// Handle any exceptions that may occur during the login process
 		}
 	%>
