@@ -11,6 +11,12 @@
 
 		<%
 			try {
+				
+			// Get the request object from the servlet or JSP
+			HttpServletRequest req = (HttpServletRequest) request;
+			// Get the referring page (referer)
+			String referringPage = req.getHeader("referer");
+			System.out.println(referringPage);
 			
     		//Get the database connection
    			ApplicationDB db = new ApplicationDB();	
@@ -24,10 +30,16 @@
 			
    	    	// Query to check if the username and password match
 			String insert = "INSERT INTO users(user_type, username, password)"
-				+ "VALUES ('END', ?, ?)";
+				+ "VALUES (?, ?, ?)";
 			PreparedStatement ps = con.prepareStatement(insert);
-			ps.setString(1, username);
-			ps.setString(2, password);
+			ps.setString(2, username);
+			ps.setString(3, password);
+			
+			if(referringPage.equalsIgnoreCase("http://localhost:8080/Group5_projectCode/AdminHomePage.jsp")) {
+				ps.setString(1, "CR");
+			} else {
+				ps.setString(1, "END");
+			}
 			
 			
 			
