@@ -16,8 +16,7 @@
 			HttpServletRequest req = (HttpServletRequest) request;
 			// Get the referring page (referer)
 			String referringPage = req.getHeader("referer");
-			System.out.println(referringPage);
-			
+
     		//Get the database connection
    			ApplicationDB db = new ApplicationDB();	
    			Connection con = db.getConnection();
