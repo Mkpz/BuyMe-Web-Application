@@ -44,6 +44,10 @@
 	        <input type="submit" value="Sales Report">
 	     </form>
 	     
+	     <form action="LandingPage.jsp" method="post">
+	        <input type="submit" value="Logout">
+	    </form>
+	     
 	     
 	   
 
