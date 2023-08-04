@@ -18,57 +18,54 @@
 	  <input type="text" placeholder="Enter tags...">
 	  <button type="button">Search</button>
 	
-	  <!-- Header for selling a bottom -->
-	  <h1>Sell Bottoms!</h1>
-	  <form action="AuctionItems.jsp" method="post">
-	    <label for="pants_type">Type:</label>
-	    <input type="text" id="pants_type" name="type" required><br>
+	  <!-- Header for selling a top -->
+	  <h1>Sell Tops!</h1>
+	  <form action="CreateAuction.jsp" method="post">
+	    <label for="neck_type">Neck Type:</label>
+	    <input type="text" id="neck_type" name="attr1" required><br>
 	
-	    <label for="waist_length">Waist:</label>
-	    <input type="text" id="waist_length" name="waist_length" required><br>
+	    <label for="top_size">Size:</label>
+	    <input type="text" id="top_size" name="attr2" required><br>
 	
-	    <label for="rise_type">Rise:</label>
-	    <input type="text" id="rise_type" name="rise_type" required><br>
+	    <label for="sleeve_length">Rise:</label>
+	    <input type="text" id="sleeve_length" name="attr3" required><br>
 	
-	    <label for="pants_price">Price:</label>
-	    <input type="number" id="pants_price" name="pants_price" required><br>
-	
+	    	    
+		<input type="hidden" name="type" value="top">
 	    <button type="submit">Place</button>
 	  </form>
 	  
-	  <!-- Header for selling a top -->
-	  <h1>Sell Tops!</h1>
-	  <form action="AuctionItems.jsp" method="post">
-	    <label for="type_of_collar">Collar Type:</label>
-	    <input type="text" id="pants_type" name="type" required><br>
+	  <!-- Header for selling a bottom -->
+	  <h1>Sell Bottoms!</h1>
+	  <form action="CreateAuction.jsp" method="post">
+	    <label for="pants_type">Type:</label>
+	    <input type="text" id="pants_type" name="attr1" required><br>
 	
-	    <label for="size">Size:</label>
-	    <input type="text" id="size" name="size" required><br>
+	    <label for="waist_length">Waist:</label>
+	    <input type="text" id="waist_length" name="attr2" required><br>
 	
-	    <label for="sleeve_length_inches">Rise:</label>
-	    <input type="text" id="sleeve_length_inches" name="sleeve_length_inches" required><br>
+	    <label for="rise_type">Rise:</label>
+	    <input type="text" id="rise_type" name="attr3" required><br>
 	
-	    <label for="top_price">Price:</label>
-	    <input type="number" id="top_price" name="top_price" required><br>
-	
+	    	    
+		<input type="hidden" name="type" value="bottoms">
 	    <button type="submit">Place</button>
 	  </form>
 	  
 	  <!-- Header for selling footwear -->
 	  <h1>Sell Footwear!</h1>
-	  <form action="AuctionItems.jsp" method="post">
+	  <form action="CreateAuction.jsp" method="post">
 	    <label for="type_of_footwear">Shoe Style:</label>
-	    <input type="text" id="type_of_footwear" name="type" required><br>
+	    <input type="text" id="type_of_footwear" name="attr1" required><br>
 	
 	    <label for="size">Size:</label>
-	    <input type="text" id="size" name="size" required><br>
+	    <input type="text" id="size" name="att2" required><br>
 	
 	    <label for="lace_color">Lace Color:</label>
-	    <input type="text" id="lace_color" name="lace_color" required><br>
+	    <input type="text" id="lace_color" name="att3" required><br>
 	
-	    <label for="footwear_price">Price:</label>
-	    <input type="number" id="footwear_price" name="footwear_price" required><br>
-	
+	    	    
+		<input type="hidden" name="type" value="footwear">
 	    <button type="submit">Place</button>
 	  </form>
 	
