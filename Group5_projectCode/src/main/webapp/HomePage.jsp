@@ -21,9 +21,44 @@
 	  <!-- Header for selling a top -->
 	  <h1>Sell Tops!</h1>
 	  <form action="CreateAuction.jsp" method="post">
-	    <label for="neck_type">Neck Type:</label>
 	    
 	    
+	    <label for="gender">Gender:</label>
+		<select name="attr4" id="gender">
+		<option value="M">M</option>
+  		<option value="F">F</option>
+		</select>
+	   <br>
+	
+	  <label for="age">Age:</label>
+		<select name="attr5" id="age">
+		<option value="Infants">Infants</option>
+  		<option value="Kids">Kids</option>
+		<option value="Teenagers">Teenagers</option>
+		<option value="Young Adults">Young Adults</option>
+		<option value="30-50">30-50</option>
+		<option value="60+">60+</option>
+		
+		</select>
+	   <br>
+	   
+	   
+	  <label for="brand">Brand:</label>
+		<select name="attr6" id="brand">
+		<option value="Adidas">Adidas</option>
+  		<option value="Levis">Levis</option>
+		<option value="Calvin Klein">Calvin Klein</option>
+		<option value="Nike">Nike</option>
+		<option value="Barbour">Barbour</option>
+		<option value="Birkenstock">Birkenstock</option>
+		<option value="Birkenstock">Boden</option>
+		 
+		</select>
+	   <br>
+	   <br>
+	   
+	   
+	   	<label for="neck_type">Neck Type:</label>
 		<select name="attr1" id="neck_type">
   		<option value="High">High</option>
   		<option value="Boat">Boat</option>
@@ -57,6 +92,41 @@
 	  <!-- Header for selling a bottom -->
 	  <h1>Sell Bottoms!</h1>
 	  <form action="CreateAuction.jsp" method="post">
+	  
+	   <label for="gender">Gender:</label>
+		<select name="attr4" id="gender">
+		<option value="M">M</option>
+  		<option value="F">F</option>
+		</select>
+	   <br>
+	
+	  <label for="age">Age:</label>
+		<select name="attr5" id="age">
+		<option value="Infants">Infants</option>
+  		<option value="Kids">Kids</option>
+		<option value="Teenagers">Teenagers</option>
+		<option value="Young Adults">Young Adults</option>
+		<option value="30-50">30-50</option>
+		<option value="60+">60+</option>
+		
+		</select>
+	   <br>
+	   
+	   
+	  <label for="brand">Brand:</label>
+		<select name="attr6" id="brand">
+		<option value="Adidas">Adidas</option>
+  		<option value="Levis">Levis</option>
+		<option value="Calvin Klein">Calvin Klein</option>
+		<option value="Nike">Nike</option>
+		<option value="Barbour">Barbour</option>
+		<option value="Birkenstock">Birkenstock</option>
+		<option value="Birkenstock">Boden</option>
+		 
+		</select>
+	   <br>
+	   <br>
+	  
 	    <label for="pants_type">Type:</label>
 		<select name="attr1" id="pants_type">
 		<option value="Activewear">Activewear</option>
@@ -92,6 +162,42 @@
 	  <!-- Header for selling footwear -->
 	  <h1>Sell Footwear!</h1>
 	  <form action="CreateAuction.jsp" method="post">
+	  
+	    <label for="gender">Gender:</label>
+		<select name="attr4" id="gender">
+		<option value="M">M</option>
+  		<option value="F">F</option>
+		</select>
+	   <br>
+	
+	  <label for="age">Age:</label>
+		<select name="attr5" id="age">
+		<option value="Infants">Infants</option>
+  		<option value="Kids">Kids</option>
+		<option value="Teenagers">Teenagers</option>
+		<option value="Young Adults">Young Adults</option>
+		<option value="30-50">30-50</option>
+		<option value="60+">60+</option>
+		
+		</select>
+	   <br>
+	   
+	   
+	  <label for="brand">Brand:</label>
+		<select name="attr6" id="brand">
+		<option value="Adidas">Adidas</option>
+  		<option value="Levis">Levis</option>
+		<option value="Calvin Klein">Calvin Klein</option>
+		<option value="Nike">Nike</option>
+		<option value="Barbour">Barbour</option>
+		<option value="Birkenstock">Birkenstock</option>
+		<option value="Birkenstock">Boden</option>
+		 
+		</select>
+	   <br>
+	   <br>
+	   
+	   
 	    <label for="type_of_footwear">Shoe Style:</label>
 		<select name="attr1" id="type_of_footwear">
 		<option value="Athletic shoes">Athletic shoes</option>
