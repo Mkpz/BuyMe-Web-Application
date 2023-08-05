@@ -2,6 +2,12 @@
     pageEncoding="ISO-8859-1" import="group5.*"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+    
+    <%
+    	if (session == null || session.getAttribute("username") == null) {
+    		response.sendRedirect("LandingPage.jsp");
+    	}
+    %>
 
 <!DOCTYPE html>
 <html>
@@ -9,38 +15,26 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Create an Auction</title>
 	</head>
-	<body>
-
-	<% 
-		try {
-			
-    		//Get the database connection
-   			ApplicationDB db = new ApplicationDB();	
-   			Connection con = db.getConnection();
-			
-   			String clothesQuery = "INSERT INTO clothes (brand, gender, age) VALUES (" + request.getParameter("brand") + ", " + request.getParameter("gender") + ", " + request.getParameter("age") + ")";
-   			String subcategoryQuery = "INSERT INTO " + request.getParameter("type") + " VALUES (?, " + request.getParameter("attr1") + ", " + request.getParameter("attr2") + ", " + request.getParameter("attr3") + ")";
-			String password = request.getParameter("password");
-			
-   	    	Statement ps = con.prepareStatement(clothesQuery, Statement.RETURN_GENERATED_KEYS);	
-			//prepare the statements
-			ps.setString(1, username);
-			ps.setString(2, password);
-			
-			// Execute the querys
-			ResultSet rs = ps.executeQuery();
-	%>		
+	<body>		
     <h1>Create a Auction!</h1>
-    <form method="post" action="createAuctionInsert.jsp">
-        <!-- Input fields for auction details: item name, description, reserve price, closing date/time, etc. -->
-        <label for="itemName">Item Name:</label>
-        <input type="text" name="itemName" required><br>
-        <!-- Add more input fields as needed for other characteristics of the item -->
-        <label for="Price">Price:</label>
-        <input type="number" name="Price" step="0.01" required><br>
+    <form method="post" action="InsertAuction.jsp">
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" required><br>
+        <label for="hiddenPrice">Hidden Minimum Price:</label>
+        <input type="number" id="hiddenprice" name="hiddenPrice" step="0.01" required><br>
+        <label for="bidIncrement">Minimum Bid Increment:</label>
+        <input type="number" id="bidIncrement" name="bidIncrement" step="0.01" required><br>
         <label for="closingDateTime">Closing Date and Time:</label>
-        <input type="datetime-local" name="closingDateTime" required><br>
+        <input type="datetime-local" id="closingDateTime" name="closingDateTime" required><br>
         <input type="submit" value="Create Auction">
+        
+        <input type="hidden" name="brand" value=<%=request.getParameter("brand")%>>
+        <input type="hidden" name="gender" value=<%=request.getParameter("gender")%>>
+        <input type="hidden" name="age" value=<%=request.getParameter("age")%>>
+        <input type="hidden" name="type" value=<%=request.getParameter("type")%>>
+        <input type="hidden" name="attr1" value=<%=request.getParameter("attr1")%>>
+        <input type="hidden" name="attr2" value=<%=request.getParameter("attr2")%>>
+        <input type="hidden" name="attr3" value=<%=request.getParameter("attr3")%>>
     </form>
 </body>
 </html>

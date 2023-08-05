@@ -38,7 +38,6 @@
 				//extract the type from the query
 				String userType = rs.getString("user_type");
 				session.setAttribute("username", rs.getString("username"));
-				session.setAttribute("password", rs.getString("password"));
 		
 				if(userType.equalsIgnoreCase("END")) {
 					// end user case

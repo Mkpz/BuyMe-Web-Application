@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+    <%
+    	if (session == null || session.getAttribute("username") == null) {
+    		response.sendRedirect("LandingPage.jsp");
+    	}
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,35 +29,35 @@
 	  <form action="CreateAuction.jsp" method="post">
 	    
 	    
-	    <label for="gender">Gender:</label>
-		<select name="attr4" id="gender">
-		<option value="M">M</option>
-  		<option value="F">F</option>
+	  <label for="gender">Gender:</label>
+		<select name="gender" id="gender">
+		<option value="1">M</option>
+  		<option value="2">F</option>
 		</select>
 	   <br>
 	
 	  <label for="age">Age:</label>
-		<select name="attr5" id="age">
-		<option value="Infants">Infants</option>
-  		<option value="Kids">Kids</option>
-		<option value="Teenagers">Teenagers</option>
-		<option value="Young Adults">Young Adults</option>
-		<option value="30-50">30-50</option>
-		<option value="60+">60+</option>
+		<select name="age" id="age">
+		<option value="1">Infants</option>
+  		<option value="2">Kids</option>
+		<option value="3">Teenagers</option>
+		<option value="4">Young Adults</option>
+		<option value="5">30-50</option>
+		<option value="6">60+</option>
 		
 		</select>
 	   <br>
 	   
 	   
 	  <label for="brand">Brand:</label>
-		<select name="attr6" id="brand">
-		<option value="Adidas">Adidas</option>
-  		<option value="Levis">Levis</option>
-		<option value="Calvin Klein">Calvin Klein</option>
-		<option value="Nike">Nike</option>
-		<option value="Barbour">Barbour</option>
-		<option value="Birkenstock">Birkenstock</option>
-		<option value="Birkenstock">Boden</option>
+		<select name="brand" id="brand">
+		<option value="1">Adidas</option>
+		<option value="2">Calvin Klein</option>
+		<option value="3">Nike</option>
+  		<option value="4">Levis</option>
+		<option value="5">Barbour</option>
+		<option value="6">Birkenstock</option>
+		<option value="7">Boden</option>
 		 
 		</select>
 	   <br>
@@ -60,28 +66,28 @@
 	   
 	   	<label for="neck_type">Neck Type:</label>
 		<select name="attr1" id="neck_type">
-  		<option value="High">High</option>
-  		<option value="Boat">Boat</option>
-		<option value="Collared">Collared</option>
+  		<option value="1">High</option>
+  		<option value="2">Boat</option>
+		<option value="3">Collared</option>
 		</select>
 	   <br>
 	   
 	    <label for="top_size">Size:</label>
 	    <select name="attr2" id="top_size">
-  		<option value="XS">XS</option>
-  		<option value="S">S</option>
-		<option value="M">M</option>
-		<option value="L">L</option>
-		<option value="XL">XL</option>
+  		<option value="1">XS</option>
+  		<option value="2">S</option>
+		<option value="3">M</option>
+		<option value="4">L</option>
+		<option value="5">XL</option>
 		</select>
 	   <br>
 	    
 	    <label for="sleeve_length">Rise:</label>
 		<select name="attr3" id="sleeve_length">
-		<option value="none">none</option>
-  		<option value="short">short</option>
-		<option value="long">long</option>
-		<option value="3/4">3/4</option>
+		<option value="1">none</option>
+  		<option value="2">short</option>
+		<option value="3">long</option>
+		<option value="4">3/4</option>
 		</select>
 	   <br>
 	    	<br>    
@@ -93,35 +99,35 @@
 	  <h1>Sell Bottoms!</h1>
 	  <form action="CreateAuction.jsp" method="post">
 	  
-	   <label for="gender">Gender:</label>
-		<select name="attr4" id="gender">
-		<option value="M">M</option>
-  		<option value="F">F</option>
+	  <label for="gender">Gender:</label>
+		<select name="gender" id="gender">
+		<option value="1">M</option>
+  		<option value="2">F</option>
 		</select>
 	   <br>
 	
 	  <label for="age">Age:</label>
-		<select name="attr5" id="age">
-		<option value="Infants">Infants</option>
-  		<option value="Kids">Kids</option>
-		<option value="Teenagers">Teenagers</option>
-		<option value="Young Adults">Young Adults</option>
-		<option value="30-50">30-50</option>
-		<option value="60+">60+</option>
+		<select name="age" id="age">
+		<option value="1">Infants</option>
+  		<option value="2">Kids</option>
+		<option value="3">Teenagers</option>
+		<option value="4">Young Adults</option>
+		<option value="5">30-50</option>
+		<option value="6">60+</option>
 		
 		</select>
 	   <br>
 	   
 	   
 	  <label for="brand">Brand:</label>
-		<select name="attr6" id="brand">
-		<option value="Adidas">Adidas</option>
-  		<option value="Levis">Levis</option>
-		<option value="Calvin Klein">Calvin Klein</option>
-		<option value="Nike">Nike</option>
-		<option value="Barbour">Barbour</option>
-		<option value="Birkenstock">Birkenstock</option>
-		<option value="Birkenstock">Boden</option>
+		<select name="brand" id="brand">
+		<option value="1">Adidas</option>
+		<option value="2">Calvin Klein</option>
+		<option value="3">Nike</option>
+  		<option value="4">Levis</option>
+		<option value="5">Barbour</option>
+		<option value="6">Birkenstock</option>
+		<option value="7">Boden</option>
 		 
 		</select>
 	   <br>
@@ -129,28 +135,28 @@
 	  
 	    <label for="pants_type">Type:</label>
 		<select name="attr1" id="pants_type">
-		<option value="Activewear">Activewear</option>
-  		<option value="Sweatpants">Sweatpants</option>
-		<option value="Jeans">Jeans</option>
+		<option value="1">Activewear</option>
+  		<option value="2">Sweatpants</option>
+		<option value="3">Jeans</option>
 		
 		</select>
 	   <br>
 	   
 	    <label for="waist_length">Waist:</label>
 		<select name="attr2" id="waist_length">
-		<option value="XS">XS</option>
-  		<option value="S">S</option>
-		<option value="M">M</option>
-		<option value="L">L</option>
-		<option value="XL">XL</option>
+		<option value="1">XS</option>
+  		<option value="2">S</option>
+		<option value="3">M</option>
+		<option value="4">L</option>
+		<option value="5">XL</option>
 		</select>
 	   <br>
 	   
 	    <label for="rise_type">Rise:</label>
 		<select name="attr3" id="rise_type">
-		<option value="High">High</option>
-  		<option value="Mid">Mid</option>
-		<option value="Low">Low</option>
+		<option value="1">High</option>
+  		<option value="2">Mid</option>
+		<option value="3">Low</option>
 	
 		</select>
 	   <br>
@@ -163,35 +169,35 @@
 	  <h1>Sell Footwear!</h1>
 	  <form action="CreateAuction.jsp" method="post">
 	  
-	    <label for="gender">Gender:</label>
-		<select name="attr4" id="gender">
-		<option value="M">M</option>
-  		<option value="F">F</option>
+	   <label for="gender">Gender:</label>
+		<select name="gender" id="gender">
+		<option value="1">M</option>
+  		<option value="2">F</option>
 		</select>
 	   <br>
 	
 	  <label for="age">Age:</label>
-		<select name="attr5" id="age">
-		<option value="Infants">Infants</option>
-  		<option value="Kids">Kids</option>
-		<option value="Teenagers">Teenagers</option>
-		<option value="Young Adults">Young Adults</option>
-		<option value="30-50">30-50</option>
-		<option value="60+">60+</option>
+		<select name="age" id="age">
+		<option value="1">Infants</option>
+  		<option value="2">Kids</option>
+		<option value="3">Teenagers</option>
+		<option value="4">Young Adults</option>
+		<option value="5">30-50</option>
+		<option value="6">60+</option>
 		
 		</select>
 	   <br>
 	   
 	   
 	  <label for="brand">Brand:</label>
-		<select name="attr6" id="brand">
-		<option value="Adidas">Adidas</option>
-  		<option value="Levis">Levis</option>
-		<option value="Calvin Klein">Calvin Klein</option>
-		<option value="Nike">Nike</option>
-		<option value="Barbour">Barbour</option>
-		<option value="Birkenstock">Birkenstock</option>
-		<option value="Birkenstock">Boden</option>
+		<select name="brand" id="brand">
+		<option value="1">Adidas</option>
+		<option value="2">Calvin Klein</option>
+		<option value="3">Nike</option>
+  		<option value="4">Levis</option>
+		<option value="5">Barbour</option>
+		<option value="6">Birkenstock</option>
+		<option value="7">Boden</option>
 		 
 		</select>
 	   <br>
@@ -200,16 +206,19 @@
 	   
 	    <label for="type_of_footwear">Shoe Style:</label>
 		<select name="attr1" id="type_of_footwear">
-		<option value="Athletic shoes">Athletic shoes</option>
-  		<option value="Boots">Boots</option>
-		<option value="Sneakers">Sneakers</option>
-		<option value="Flats">Flats</option>
+		<option value="1">Athletic shoes</option>
+  		<option value="2">Boots</option>
+		<option value="3">Sneakers</option>
+		<option value="4">Flats</option>
 		</select>
 	   <br>
 	
 	
 	    <label for="size">Size:</label>
 		<select name="attr2" id="size">
+		<option value="1">1</option>
+  		<option value="2">2</option>
+		<option value="3">3</option>
 		<option value="4">4</option>
   		<option value="5">5</option>
 		<option value="6">6</option>
@@ -224,12 +233,12 @@
 	   
 	    <label for="lace_color">Lace Color:</label>
 		<select name="attr3" id="lace_color">
-		<option value="Black">Black</option>
-  		<option value="Blue">Blue</option>
-		<option value="Brown">Brown</option>
-		<option value="Beige">Beige</option>
-		<option value="Green">Green</option>
-		<option value="Red">Red</option>
+		<option value="1">Black</option>
+  		<option value="2">Blue</option>
+		<option value="3">Brown</option>
+		<option value="4">Beige</option>
+		<option value="5">Green</option>
+		<option value="6">Red</option>
 
 		</select>
 	   <br>
