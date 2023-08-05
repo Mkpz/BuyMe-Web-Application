@@ -51,13 +51,13 @@ DROP TABLE IF EXISTS `auction`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `auction` (
+  `auction_id` int NOT NULL AUTO_INCREMENT,
+  `manufacture_id` int NOT NULL,
   `start_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `end_time` datetime NOT NULL,
-  `auction_id` int NOT NULL AUTO_INCREMENT,
   `current_price` decimal(10,2) NOT NULL DEFAULT '0.00',
   `seller_username` varchar(50) DEFAULT NULL,
   `buyer_username` varchar(50) DEFAULT NULL,
-  `manufacture_id` int NOT NULL,
   `hidden_minimum_price` decimal(10,2) NOT NULL DEFAULT '0.00',
   `minimum_bid_increment` decimal(10,2) NOT NULL DEFAULT '0.01',
   PRIMARY KEY (`auction_id`),
@@ -67,7 +67,7 @@ CREATE TABLE `auction` (
   CONSTRAINT `buyer_username_fk` FOREIGN KEY (`buyer_username`) REFERENCES `users` (`username`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `manufacture_id_fk` FOREIGN KEY (`manufacture_id`) REFERENCES `clothes` (`manufacture_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `seller_username_fk` FOREIGN KEY (`seller_username`) REFERENCES `users` (`username`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,6 +76,7 @@ CREATE TABLE `auction` (
 
 LOCK TABLES `auction` WRITE;
 /*!40000 ALTER TABLE `auction` DISABLE KEYS */;
+INSERT INTO `auction` VALUES (2,1,'2023-08-05 17:38:44','2023-08-14 17:38:00',10.00,'matt',NULL,20.00,5.00),(3,3,'2023-08-05 17:51:05','2023-09-05 17:51:00',50.00,'matt',NULL,60.00,1.00),(4,2,'2023-08-05 17:51:21','2023-08-29 17:51:00',100.00,'matt',NULL,150.00,20.00);
 /*!40000 ALTER TABLE `auction` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,10 +146,10 @@ DROP TABLE IF EXISTS `bottoms`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bottoms` (
-  `type` enum('Activewear','Sweatpants','Jeans') DEFAULT NULL,
-  `waist_length` enum('XS','S','M','L','XL') DEFAULT NULL,
-  `rise_type` enum('High','Mid','Low') DEFAULT NULL,
   `manufacture_id` int NOT NULL,
+  `type` enum('Activewear','Sweatpants','Jeans') NOT NULL,
+  `waist_length` enum('XS','S','M','L','XL') NOT NULL,
+  `rise_type` enum('High','Mid','Low') NOT NULL,
   PRIMARY KEY (`manufacture_id`),
   CONSTRAINT `manufacture_id_bottoms_fk` FOREIGN KEY (`manufacture_id`) REFERENCES `clothes` (`manufacture_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -160,6 +161,7 @@ CREATE TABLE `bottoms` (
 
 LOCK TABLES `bottoms` WRITE;
 /*!40000 ALTER TABLE `bottoms` DISABLE KEYS */;
+INSERT INTO `bottoms` VALUES (2,'Activewear','XS','High');
 /*!40000 ALTER TABLE `bottoms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,12 +174,11 @@ DROP TABLE IF EXISTS `clothes`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clothes` (
   `manufacture_id` int NOT NULL AUTO_INCREMENT,
-  `brand` enum('Adidas','Calvin Klein','Nike','Levis') DEFAULT NULL,
-  `type` enum('Top','Bottom','Footwear') DEFAULT NULL,
-  `gender` enum('Women','Men') DEFAULT NULL,
-  `age` enum('Infants','Kids','Teenagers','Young Adults','30-50','60+') DEFAULT NULL,
+  `brand` enum('Adidas','Calvin Klein','Nike','Levis','Barbour','Birkenstock','Boden') NOT NULL,
+  `gender` enum('M','F') NOT NULL,
+  `age` enum('Infants','Kids','Teenagers','Young Adults','30-50','60+') NOT NULL,
   PRIMARY KEY (`manufacture_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,6 +187,7 @@ CREATE TABLE `clothes` (
 
 LOCK TABLES `clothes` WRITE;
 /*!40000 ALTER TABLE `clothes` DISABLE KEYS */;
+INSERT INTO `clothes` VALUES (1,'Adidas','M','Infants'),(2,'Adidas','M','Infants'),(3,'Adidas','M','Infants');
 /*!40000 ALTER TABLE `clothes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,7 +215,7 @@ CREATE TABLE `faqs` (
 
 LOCK TABLES `faqs` WRITE;
 /*!40000 ALTER TABLE `faqs` DISABLE KEYS */;
-INSERT INTO `faqs` VALUES ('Yes','Do you sell this?','test1@rut',1),('No','Can I find this in red?','test5',2);
+INSERT INTO `faqs` VALUES ('Yes','Do you sell this?','test1@rut',1),('No','Can I find this in red?',NULL,2);
 /*!40000 ALTER TABLE `faqs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,10 +227,10 @@ DROP TABLE IF EXISTS `footwear`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `footwear` (
-  `type_of_footwear` enum('Athletic shoes','Boots','Sneakers','Flats') DEFAULT NULL,
-  `size` enum('4','5','6','7','8','9','10','11') DEFAULT NULL,
-  `lace_color` enum('Black','Blue','Brown','Beige','Green','Red') DEFAULT NULL,
   `manufacture_id` int NOT NULL,
+  `type_of_footwear` enum('Athletic shoes','Boots','Sneakers','Flats') NOT NULL,
+  `size` enum('1','2','3','4','5','6','7','8','9','10','11') NOT NULL,
+  `lace_color` enum('Black','Blue','Brown','Beige','Green','Red') NOT NULL,
   PRIMARY KEY (`manufacture_id`),
   CONSTRAINT `manufacture_id_footwear_fk` FOREIGN KEY (`manufacture_id`) REFERENCES `clothes` (`manufacture_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -240,6 +242,7 @@ CREATE TABLE `footwear` (
 
 LOCK TABLES `footwear` WRITE;
 /*!40000 ALTER TABLE `footwear` DISABLE KEYS */;
+INSERT INTO `footwear` VALUES (3,'Athletic shoes','1','Black');
 /*!40000 ALTER TABLE `footwear` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,10 +254,10 @@ DROP TABLE IF EXISTS `top`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `top` (
-  `Neck_type` enum('High','Boat','Collared') DEFAULT NULL,
-  `size` enum('XS','S','M','L','XL') DEFAULT NULL,
-  `sleeve_length` enum('none','short','long','3/4') DEFAULT NULL,
   `manufacture_id` int NOT NULL,
+  `Neck_type` enum('High','Boat','Collared') NOT NULL,
+  `size` enum('XS','S','M','L','XL') NOT NULL,
+  `sleeve_length` enum('none','short','long','3/4') NOT NULL,
   PRIMARY KEY (`manufacture_id`),
   CONSTRAINT `manufacture_id_top_fk` FOREIGN KEY (`manufacture_id`) REFERENCES `clothes` (`manufacture_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -266,6 +269,7 @@ CREATE TABLE `top` (
 
 LOCK TABLES `top` WRITE;
 /*!40000 ALTER TABLE `top` DISABLE KEYS */;
+INSERT INTO `top` VALUES (1,'High','XS','none');
 /*!40000 ALTER TABLE `top` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -290,7 +294,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('ADMIN','map616@cs','password123'),('END','test1@rut','password567'),('CR','test2@rut','password000'),('CR','test3@rut','password999'),('END','test5','password333');
+INSERT INTO `users` VALUES ('ADMIN','map616@cs','password123'),('END','matt','password999'),('END','test1@rut','password567'),('CR','test2@rut','password000'),('CR','test3@rut','password999'),('END','test5','password123'),('END','test5','password333');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -303,4 +307,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-04 12:51:50
+-- Dump completed on 2023-08-05 18:03:47
