@@ -2,6 +2,12 @@
     pageEncoding="ISO-8859-1" import="group5.*"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+    
+    <%
+    	if (session == null || session.getAttribute("username") == null) {
+    		response.sendRedirect("LandingPage.jsp");
+    	}
+    %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,8 +22,7 @@
 			HttpServletRequest req = (HttpServletRequest) request;
 			// Get the referring page (referer)
 			String referringPage = req.getHeader("referer");
-			System.out.println(referringPage);
-			
+
     		//Get the database connection
    			ApplicationDB db = new ApplicationDB();	
    			Connection con = db.getConnection();

@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+    <%
+    	if (session == null || session.getAttribute("username") == null) {
+    		response.sendRedirect("LandingPage.jsp");
+    	}
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,73 +24,243 @@
 	  <input type="text" placeholder="Enter tags...">
 	  <button type="button">Search</button>
 	
-	  <!-- Header for selling a bottom -->
-	  <h1>Sell Bottoms!</h1>
-	  <form action="AuctionItems.jsp" method="post">
-	    <label for="pants_type">Type:</label>
-	    <input type="text" id="pants_type" name="type" required><br>
+	  <!-- Header for selling a top -->
+	  <h1>Sell Tops!</h1>
+	  <form action="CreateAuction.jsp" method="post">
+	    
+	    
+	  <label for="gender">Gender:</label>
+		<select name="gender" id="gender">
+		<option value="1">M</option>
+  		<option value="2">F</option>
+		</select>
+	   <br>
 	
-	    <label for="waist_length">Waist:</label>
-	    <input type="text" id="waist_length" name="waist_length" required><br>
-	
-	    <label for="rise_type">Rise:</label>
-	    <input type="text" id="rise_type" name="rise_type" required><br>
-	
-	    <label for="pants_price">Price:</label>
-	    <input type="number" id="pants_price" name="pants_price" required><br>
-	
+	  <label for="age">Age:</label>
+		<select name="age" id="age">
+		<option value="1">Infants</option>
+  		<option value="2">Kids</option>
+		<option value="3">Teenagers</option>
+		<option value="4">Young Adults</option>
+		<option value="5">30-50</option>
+		<option value="6">60+</option>
+		
+		</select>
+	   <br>
+	   
+	   
+	  <label for="brand">Brand:</label>
+		<select name="brand" id="brand">
+		<option value="1">Adidas</option>
+		<option value="2">Calvin Klein</option>
+		<option value="3">Nike</option>
+  		<option value="4">Levis</option>
+		<option value="5">Barbour</option>
+		<option value="6">Birkenstock</option>
+		<option value="7">Boden</option>
+		 
+		</select>
+	   <br>
+	   <br>
+	   
+	   
+	   	<label for="neck_type">Neck Type:</label>
+		<select name="attr1" id="neck_type">
+  		<option value="1">High</option>
+  		<option value="2">Boat</option>
+		<option value="3">Collared</option>
+		</select>
+	   <br>
+	   
+	    <label for="top_size">Size:</label>
+	    <select name="attr2" id="top_size">
+  		<option value="1">XS</option>
+  		<option value="2">S</option>
+		<option value="3">M</option>
+		<option value="4">L</option>
+		<option value="5">XL</option>
+		</select>
+	   <br>
+	    
+	    <label for="sleeve_length">Rise:</label>
+		<select name="attr3" id="sleeve_length">
+		<option value="1">none</option>
+  		<option value="2">short</option>
+		<option value="3">long</option>
+		<option value="4">3/4</option>
+		</select>
+	   <br>
+	    	<br>    
+		<input type="hidden" name="type" value="top">
 	    <button type="submit">Place</button>
 	  </form>
 	  
-	  <!-- Header for selling a top -->
-	  <h1>Sell Tops!</h1>
-	  <form action="AuctionItems.jsp" method="post">
-	    <label for="type_of_collar">Collar Type:</label>
-	    <input type="text" id="pants_type" name="type" required><br>
+	  <!-- Header for selling a bottom -->
+	  <h1>Sell Bottoms!</h1>
+	  <form action="CreateAuction.jsp" method="post">
+	  
+	  <label for="gender">Gender:</label>
+		<select name="gender" id="gender">
+		<option value="1">M</option>
+  		<option value="2">F</option>
+		</select>
+	   <br>
 	
-	    <label for="size">Size:</label>
-	    <input type="text" id="size" name="size" required><br>
+	  <label for="age">Age:</label>
+		<select name="age" id="age">
+		<option value="1">Infants</option>
+  		<option value="2">Kids</option>
+		<option value="3">Teenagers</option>
+		<option value="4">Young Adults</option>
+		<option value="5">30-50</option>
+		<option value="6">60+</option>
+		
+		</select>
+	   <br>
+	   
+	   
+	  <label for="brand">Brand:</label>
+		<select name="brand" id="brand">
+		<option value="1">Adidas</option>
+		<option value="2">Calvin Klein</option>
+		<option value="3">Nike</option>
+  		<option value="4">Levis</option>
+		<option value="5">Barbour</option>
+		<option value="6">Birkenstock</option>
+		<option value="7">Boden</option>
+		 
+		</select>
+	   <br>
+	   <br>
+	  
+	    <label for="pants_type">Type:</label>
+		<select name="attr1" id="pants_type">
+		<option value="1">Activewear</option>
+  		<option value="2">Sweatpants</option>
+		<option value="3">Jeans</option>
+		
+		</select>
+	   <br>
+	   
+	    <label for="waist_length">Waist:</label>
+		<select name="attr2" id="waist_length">
+		<option value="1">XS</option>
+  		<option value="2">S</option>
+		<option value="3">M</option>
+		<option value="4">L</option>
+		<option value="5">XL</option>
+		</select>
+	   <br>
+	   
+	    <label for="rise_type">Rise:</label>
+		<select name="attr3" id="rise_type">
+		<option value="1">High</option>
+  		<option value="2">Mid</option>
+		<option value="3">Low</option>
 	
-	    <label for="sleeve_length_inches">Rise:</label>
-	    <input type="text" id="sleeve_length_inches" name="sleeve_length_inches" required><br>
-	
-	    <label for="top_price">Price:</label>
-	    <input type="number" id="top_price" name="top_price" required><br>
-	
+		</select>
+	   <br>
+	    	    
+		<input type="hidden" name="type" value="bottoms">
 	    <button type="submit">Place</button>
 	  </form>
 	  
 	  <!-- Header for selling footwear -->
 	  <h1>Sell Footwear!</h1>
-	  <form action="AuctionItems.jsp" method="post">
+	  <form action="CreateAuction.jsp" method="post">
+	  
+	   <label for="gender">Gender:</label>
+		<select name="gender" id="gender">
+		<option value="1">M</option>
+  		<option value="2">F</option>
+		</select>
+	   <br>
+	
+	  <label for="age">Age:</label>
+		<select name="age" id="age">
+		<option value="1">Infants</option>
+  		<option value="2">Kids</option>
+		<option value="3">Teenagers</option>
+		<option value="4">Young Adults</option>
+		<option value="5">30-50</option>
+		<option value="6">60+</option>
+		
+		</select>
+	   <br>
+	   
+	   
+	  <label for="brand">Brand:</label>
+		<select name="brand" id="brand">
+		<option value="1">Adidas</option>
+		<option value="2">Calvin Klein</option>
+		<option value="3">Nike</option>
+  		<option value="4">Levis</option>
+		<option value="5">Barbour</option>
+		<option value="6">Birkenstock</option>
+		<option value="7">Boden</option>
+		 
+		</select>
+	   <br>
+	   <br>
+	   
+	   
 	    <label for="type_of_footwear">Shoe Style:</label>
-	    <input type="text" id="type_of_footwear" name="type" required><br>
+		<select name="attr1" id="type_of_footwear">
+		<option value="1">Athletic shoes</option>
+  		<option value="2">Boots</option>
+		<option value="3">Sneakers</option>
+		<option value="4">Flats</option>
+		</select>
+	   <br>
+	
 	
 	    <label for="size">Size:</label>
-	    <input type="text" id="size" name="size" required><br>
-	
+		<select name="attr2" id="size">
+		<option value="1">1</option>
+  		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+  		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>		
+		<option value="9">9</option>		
+		<option value="10">10</option>		
+		<option value="11">11</option>
+		
+		</select>
+	   <br>
+	   
 	    <label for="lace_color">Lace Color:</label>
-	    <input type="text" id="lace_color" name="lace_color" required><br>
-	
-	    <label for="footwear_price">Price:</label>
-	    <input type="number" id="footwear_price" name="footwear_price" required><br>
-	
+		<select name="attr3" id="lace_color">
+		<option value="1">Black</option>
+  		<option value="2">Blue</option>
+		<option value="3">Brown</option>
+		<option value="4">Beige</option>
+		<option value="5">Green</option>
+		<option value="6">Red</option>
+
+		</select>
+	   <br>
+	    	    
+		<input type="hidden" name="type" value="footwear">
 	    <button type="submit">Place</button>
 	  </form>
-	
+	<br>
+	<br>
 	  <!-- Footer buttons -->
 		<form action="DeleteAccount.jsp" method="post">
 	        <input type="submit" value="Delete Account">
 	    </form>
-	    
+	    <br>
 	    <form action="FAQs.jsp" method="post">
 	        <input type="submit" value="FAQ's">
 	    </form>
-	    
+	    <br>
 	    <form action="Alerts.jsp" method="post">
 	        <input type="submit" value="View Alerts">
 	    </form>
-	    
+	    <br>
 	    <form action="LandingPage.jsp" method="post">
 	        <input type="submit" value="Logout">
 	    </form>

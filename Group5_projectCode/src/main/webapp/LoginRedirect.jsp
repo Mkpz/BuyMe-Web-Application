@@ -41,12 +41,15 @@
 		
 				if(userType.equalsIgnoreCase("END")) {
 					// end user case
+					session.setAttribute("user_type", "END");
 					response.sendRedirect("HomePage.jsp");
 				} else if(userType.equalsIgnoreCase("ADMIN")) {
 					// admin case
+					session.setAttribute("user_type", "ADMIN");
 					response.sendRedirect("AdminHomePage.jsp");
 				} else {
 					// customer rep case
+					session.setAttribute("user_type", "CR");
 					response.sendRedirect("CustomerRepHomePage.jsp");
 				}
 				//session.setAttribute("usertype", rs.getString("usertype")//

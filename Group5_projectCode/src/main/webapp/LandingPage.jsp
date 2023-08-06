@@ -2,6 +2,12 @@
     pageEncoding="ISO-8859-1" import="group5.*"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+    
+    <%
+    	if (session != null && session.getAttribute("username") !=  null) {
+    		response.sendRedirect("HomePage.jsp");
+    	}
+    %>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
