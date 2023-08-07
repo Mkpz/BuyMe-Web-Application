@@ -14,8 +14,8 @@
 <h1 style="font-size:35px"><strong> Alert List</strong></h1>
 
 <h2 style="font-size:25px"><strong> Set Item Alert</strong></h2>
-<h3 style="font-size:18px"><strong> Set an alert for a clothing item you are interested in!</strong></h3>
-<form action="SetItemAlert.jsp">
+<h3 style="font-size:18px"><strong> Set an alert for a clothing item you are interested in (Select One)!</strong></h3>
+<form action="AlertConfirmation.jsp">
 	<table>
 	<tr>    
 		<td><input type="checkbox" id="top" name="typeOfClothes" value="top"></td><td><label> Tops</label></td>
