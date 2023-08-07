@@ -37,12 +37,31 @@
 		</form>
 	<br>
 		  
-		  
+	
+		<h1>Generate Sales Report</h1>
+	  	<form action="SalesReport.jsp" method="post">
+	  	
+	  	
+		<label for="reportStyle">Sales Report Style:</label>
+		<select name="reportStyle" id="reportStyle">
+		<option value="1">Total Earnings</option>
+  		<option value="2">Earnings Per Item</option>
+		<option value="3">Earnings Per Item Type</option>
+		<option value="4">Earnings Per End-User</option>
+		<option value="5">Best-Selling Items</option>
+		<option value="6">Best Buyers</option>
+		</select>
+	   	<br>
+	   	
+	   	<input type="hidden" name="type" value="reportStyle">
+	    <button type="submit">Generate Report</button>
+	    
+	   	</form>
+	   	
+	   	
 		  <!-- Header Deleting an Account -->
-	 	 <h3>Generate Sales Report!</h3>
-	 	 <form action="SalesReport.jsp" method="post">
-	        <input type="submit" value="Sales Report">
-	     </form>
+	 	 
+	 	
 	     
 	     <form action="LandingPage.jsp" method="post">
 	        <input type="submit" value="Logout">
