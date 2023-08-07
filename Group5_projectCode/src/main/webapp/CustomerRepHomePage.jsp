@@ -37,6 +37,11 @@
 	     <form action="LandingPage.jsp" method="post">
 	        <input type="submit" value="Logout">
 	    </form>
+	    <br>
+	    <br>
+	    <form action="LandingPage.jsp" method="post">
+	        <input type="submit" value="Logout">
+	    </form>
 
 
 </body>
