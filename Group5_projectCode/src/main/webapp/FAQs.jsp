@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h1>Welcome Frequently Asked Questions</h1>
+<h1>Welcome To Frequently Asked Questions</h1>
 
 <form action="SubmitQuestionServlet" method="post">
     <label for="newQuestion">Ask a question:</label><br>
