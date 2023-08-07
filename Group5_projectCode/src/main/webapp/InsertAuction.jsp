@@ -18,7 +18,8 @@
 	<body>
 
 	<%
-		try {
+	if (request.getMethod().equalsIgnoreCase("post")) {
+    		try {
 			
     		//Get the database connection
    			ApplicationDB db = new ApplicationDB();	
@@ -118,6 +119,7 @@
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
 	%>		
 </body>
 </html>
