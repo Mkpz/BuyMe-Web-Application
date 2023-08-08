@@ -20,7 +20,9 @@
 	    
 	    <!-- Header for viewing items -->
 		  <h3>Remove an Item From Auction</h3>
+		  <form action="RemoveAuction.jsp" method="post">
 		  <button type="button">Search</button>
+		  </form>
 		  
 		  
 		  <h3>Remove Bids!</h3>
