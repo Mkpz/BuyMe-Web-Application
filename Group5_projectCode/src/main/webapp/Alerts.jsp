@@ -45,10 +45,13 @@
 	    		
 	    		//create SQL statement
 	    		Statement stmt = con.createStatement();
+	    		Statement stmtTwo = con.createStatement();
 	    		//select query
 	    		String alertQuery = "SELECT DISTINCT a.username, a.alert_id FROM alerts a JOIN auction ON a.alert_id = auction.manufacture_id";
+	    		String wonAuctionQuery = "SELECT a.buyer_username, a.auction_id FROM auction a";
 	    		//execute the created query
 	    		ResultSet result = stmt.executeQuery(alertQuery);
+	    		ResultSet wonResults = stmtTwo.executeQuery(wonAuctionQuery);
 	    		//gets username of active session
 	    		String username = (String)session.getAttribute("username");
 	    		
@@ -71,6 +74,7 @@
 				out.print("</td>");
 				out.print("</tr>");
 	    		
+				//iterate through item alerts
 	    		while(result.next()) {
 	    			//only print necessary results
 		    		//make a row
@@ -79,6 +83,7 @@
 					out.print("<td>");
 	    			String match = result.getString(1);
 	    			int type = result.getInt(2);
+	    			out.print("<center>");
 	    			if(match.equals(username)){
 	    				if(type == 1){
 	    					out.print("You have an alert for tops, there are currently available tops in the auction!");
@@ -87,11 +92,30 @@
 	    				}else if(type == 3){
 	    					out.print("You have an alert for footwear, footwear items are currenlty available in the auction");
 	    				}
-	    				
-	    			//will need to add logic for winning auctions and being outbid
 	    			}
+	    			out.print("</center>");
 	    			
 	    		}
+	    		
+				//iterate through won auction results
+	    		while(wonResults.next()) {
+	    			//only print necessary results
+		    		//make a row
+					out.print("<tr>");
+					//make a column
+					out.print("<td>");
+					out.print("<center>");
+	    			String match = wonResults.getString(1);
+	    			int type = wonResults.getInt(2);
+	    			if(match != null){	
+		    			if(match.equals(username)){
+		    				out.print("You have won auction number " + type + " congrats on your new purchase!");
+		    			}
+	    		}
+	    			out.print("</center>");
+	    	}
+	    		
+	    		
 	    		
 	    		out.print("</table>");
 
