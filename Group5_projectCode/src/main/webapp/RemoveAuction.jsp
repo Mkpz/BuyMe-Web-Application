@@ -55,39 +55,29 @@
 			    
 			    
 			 // Delete logic
-		        String bid_id = request.getParameter("bid_id"); 
+		    
 		        String auction_id = request.getParameter("auction_id");
-		        String username = request.getParameter("username");
-		        
-		        System.out.println(bid_id);
-		        System.out.println(auction_id);
-		        System.out.println(username);
 
-		        if (bid_id != null && username != null && auction_id != null) {
+		        if (auction_id != null) {
 		        	
 		        	System.out.println("here");
 		            
-		        	String deleteQuery = "DELETE FROM bid WHERE bid_id = ? and auction_id = ? and bidder_username = ?";
+		        	String deleteQuery = "DELETE FROM auction WHERE auction_id = ?";
 		            
 		            PreparedStatement deleteStatement = con.prepareStatement(deleteQuery);
-		            
-		            int bidValue = Integer.valueOf(bid_id);
+
 		            int auctionValue = Integer.valueOf(auction_id);
 		            
-		            deleteStatement.setInt(1, bidValue);
-		            deleteStatement.setInt(2, auctionValue);
-		            deleteStatement.setString(3, username);
 		            
-		            deleteStatement.executeUpdate();
-		            
-		            
-					response.sendRedirect("RemoveBids.jsp");
+		            deleteStatement.setInt(1, auctionValue);
+		            deleteStatement.executeUpdate();		            
+					response.sendRedirect("RemoveAuction.jsp");
 		        } 
 
 				//close the connection.
 				db.closeConnection(con);
 			} catch (Exception e) {
-				out.print("To Delete a bid all fields must be filled");
+				out.print("To Delete a auction all fields must be filled");
 			}			
 	
 	%>
@@ -95,25 +85,14 @@
 
 
 	<div id="remove-bid container" >
-		<h2>Enter the requested information to remove a bid!</h2>
+		<h2>Enter the "Auction ID" of the Auction you would like to remove!</h2>
 		
-		<form action="RemoveBids.jsp" method = "post">
-		<label for="username">User name:</label>
-		<input type="text" id="username" name="username">
-		
-		<br><br>
-		
-		<label for="bid_id">Bid ID:</label>
-		<input type="text" id="bid_id" name="bid_id">
-		
-		<br><br>
-		
+		<form action="RemoveAuction.jsp" method = "post">
 		<label for="auction_id">Auction ID:</label>
 		<input type="text" id="auction_id" name="auction_id">
 		
 		<br><br>
-		
-		<input type="submit" value="Remove Bid">
+		<input type="submit" value="Remove Auction">
 		
 		</form>
 		
