@@ -18,15 +18,15 @@
 <form action="AlertConfirmation.jsp">
 	<table>
 	<tr>    
-		<td><input type="checkbox" id="top" name="typeOfClothes" value="top"></td><td><label> Tops</label></td>
+		<td><input type="checkbox" id="checkBox" name="checkBox" value="1" checked></td><td><label> Tops</label></td>
 	</tr>
 
 	<tr>
-		<td><input type="checkbox" id="bottom" name="typeOfClothes" value="bottom"></td><td><label> Bottoms</label></td>
+		<td><input type="checkbox" id="checkBox" name="checkBox" value="2"></td><td><label> Bottoms</label></td>
 	</tr>
 
 	<tr>
-		<td> <input type="checkbox" id="footwear" name="typeOfClothes" value="footwear"></td><td><label> Footwear</label></td>
+		<td> <input type="checkbox" id="checkBox" name="checkBox" value="3"></td><td><label> Footwear</label></td>
 	</tr>
 	</table>
 	<br>
