@@ -53,7 +53,7 @@
 	    				ps.executeUpdate(); %>
 	    				<center>
 		    			<p>Your alert has been placed.</p>
-		    	        <p>If you want to place another alert, click the button below:</p>
+		    	        <p>If you want to place another alert, click the button above:</p>
 		    	        <p>Remember to check the alerts page to see if your interested item is now available</p>
 	    				</center>
 	    		<% 	
