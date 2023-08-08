@@ -23,6 +23,12 @@
 		  <button type="button">Search</button>
 		  
 		  
+		  <h3>Remove Bids!</h3>
+	 	 <form action="RemoveBids.jsp" method="post">
+	        <input type="submit" value="View All Current Bids">
+	     </form>
+		  
+		  
 		  <!-- Header Deleting an Account -->
 	 	 <h3>Delete User Account Information!</h3>
 	 	 <form action="DeleteAccount.jsp" method="post">
@@ -34,9 +40,7 @@
 	     <form action="FAQs.jsp" method="post">
 	        <input type="submit" value="FAQ's">
 	    </form>
-	     <form action="LandingPage.jsp" method="post">
-	        <input type="submit" value="Logout">
-	    </form>
+	    
 	    <br>
 	    <br>
 	    <form action="LandingPage.jsp" method="post">
