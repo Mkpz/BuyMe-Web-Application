@@ -147,6 +147,12 @@
 				</tr>
 		</table>
 		
+	<%
+	
+	if (!rs.getString("seller_username").equals(session.getAttribute("username"))) {
+	
+	%>
+		
 		<br><br>
 		<h2>Place a Bid!</h2>
     	<form method="post" action="InsertBid.jsp">
@@ -157,36 +163,53 @@
     	</form>
     	
     <%
-    	String bidSettingQuery = "SELECT * FROM bidsetting WHERE auction_id = ? AND bidderusername = ?";
+    	String bidSettingQuery = "SELECT * FROM bidsetting WHERE auction_id = ? AND bidder_username = ?";
     	ps = con.prepareStatement(bidSettingQuery);
     	ps.setInt(1, Integer.valueOf(request.getParameter("auctionID")));
-    	ps.setString(1, session.getAttribute("username").toString());
+    	ps.setString(2, session.getAttribute("username").toString());
     	rs = ps.executeQuery();
     	
     	boolean autobiddingORnot, anonymousORnot;
     	autobiddingORnot = anonymousORnot = false;
     	double autobid_upper_limit = 0.01;
+    	int flag = -1;
     	
     	if (rs.next()) {
     		anonymousORnot = rs.getBoolean("anonymousORnot");
     		autobiddingORnot = rs.getBoolean("autobiddingORnot");
     		autobid_upper_limit = rs.getDouble("autobid_upper_limit");
+    		flag = 1;
     	}
     
     %> 	
     	
-    	<h2>Bid Setting!</h2>
-    	<form method="post" action="BidSetting.jsp">
-    		<input type="checkbox" id="anonymousORnot" name="anonymousORnot" value="1" <% if (anonymousORnot) { %> checked <% } %>>
+    	<!-- 
+    	<h2>Current Bid Setting!</h2>
+    	The user is <% if (!anonymousORnot) {%> not <% } %> an anonymous bidder. Auto-bidding is turned <% if (autobiddingORnot) { %> on with an upper limit of $<%=autobid_upper_limit%>. <% } else { %> off. <% } %>
+    	-->
+    	
+    	<h2>Change Bid Setting!</h2>
+    	<form method="post" action="InsertBidSetting.jsp">
+    		<input type="checkbox" id="anonymousORnot" name="anonymousORnot" value="true" <% if (anonymousORnot) {%> checked <% } %>>
         	<label for="anonymousORnot">Anonymous</label>
-        	<input type="checkbox" id="autobiddingORnot" name="autobiddingORnot" value="1" <% if (autobiddingORnot) { %> checked <% } %>>
+        	<input type="checkbox" id="autobiddingORnot" name="autobiddingORnot" value="true" <% if (autobiddingORnot) {%> checked <% } %>>
         	<label for="autobiddingORnot">Auto Bidding</label>
         	<label for="autobid_upper_limit">Auto Bidding Upper Limit:</label>
         	<input type="number" id="autobid_upper_limit" name="autobid_upper_limit" step="0.01" min="0.01" value="<%=autobid_upper_limit%>" required><br>
         	<input type="hidden" name="auctionID" value=<%=request.getParameter("auctionID")%>>
+        	<input type="hidden" name="existence" value=<%=flag%>>
         	<input type="submit" value="Bid">       
     	</form>
     <%
+	}
+	
+		//Start Bid History Below
+	
+	
+	
+	
+	
+	
 			}
 			else {
 				response.sendRedirect("HomePage.jsp");
