@@ -67,7 +67,7 @@ CREATE TABLE `auction` (
   CONSTRAINT `buyer_username_fk` FOREIGN KEY (`buyer_username`) REFERENCES `users` (`username`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `manufacture_id_fk` FOREIGN KEY (`manufacture_id`) REFERENCES `clothes` (`manufacture_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `seller_username_fk` FOREIGN KEY (`seller_username`) REFERENCES `users` (`username`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,7 +76,7 @@ CREATE TABLE `auction` (
 
 LOCK TABLES `auction` WRITE;
 /*!40000 ALTER TABLE `auction` DISABLE KEYS */;
-INSERT INTO `auction` VALUES (2,1,'2023-08-05 17:38:44','2023-08-14 17:38:00',10.00,'matt',NULL,20.00,5.00),(3,3,'2023-08-05 17:51:05','2023-09-05 17:51:00',50.00,'matt',NULL,60.00,1.00),(4,2,'2023-08-05 17:51:21','2023-08-29 17:51:00',100.00,'matt',NULL,150.00,20.00);
+INSERT INTO `auction` VALUES (2,1,'2023-08-05 17:38:44','2023-08-14 17:38:00',10.00,'matt',NULL,20.00,5.00),(3,3,'2023-08-05 17:51:05','2023-09-05 17:51:00',50.00,'matt',NULL,60.00,1.00),(4,2,'2023-08-05 17:51:21','2023-08-29 17:51:00',100.00,'matt',NULL,150.00,20.00),(5,1,'2023-08-07 13:03:44','2023-08-03 19:09:00',10.00,'matt',NULL,7.00,9.00),(6,1,'2023-08-07 16:59:15','2023-08-23 20:59:00',13.00,'test5',NULL,6.00,1.00);
 /*!40000 ALTER TABLE `auction` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,6 +92,7 @@ CREATE TABLE `bid` (
   `auction_id` int NOT NULL,
   `bidder_username` varchar(50) NOT NULL DEFAULT 'root',
   `amount` decimal(10,2) DEFAULT '0.01',
+  `bid_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`bid_id`,`auction_id`,`bidder_username`),
   KEY `suction_id_fk_idx` (`auction_id`),
   KEY `bidder_username_fk_idx` (`bidder_username`),
@@ -106,6 +107,7 @@ CREATE TABLE `bid` (
 
 LOCK TABLES `bid` WRITE;
 /*!40000 ALTER TABLE `bid` DISABLE KEYS */;
+INSERT INTO `bid` VALUES (1,6,'matt',12.00,'2023-08-07 19:19:29'),(2,6,'matt',13.00,'2023-08-07 19:20:46');
 /*!40000 ALTER TABLE `bid` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,7 +123,7 @@ CREATE TABLE `bidsetting` (
   `bidder_username` varchar(50) NOT NULL,
   `anonymousORnot` tinyint NOT NULL DEFAULT '0',
   `autobiddingORnot` tinyint NOT NULL DEFAULT '0',
-  `sutobid_upper_limit` decimal(10,2) NOT NULL DEFAULT '0.01',
+  `autobid_upper_limit` decimal(10,2) NOT NULL DEFAULT '0.01',
   PRIMARY KEY (`auction_id`,`bidder_username`),
   KEY `bidder_username_fk2_idx` (`bidder_username`),
   CONSTRAINT `auction_id_fk2` FOREIGN KEY (`auction_id`) REFERENCES `auction` (`auction_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -135,6 +137,7 @@ CREATE TABLE `bidsetting` (
 
 LOCK TABLES `bidsetting` WRITE;
 /*!40000 ALTER TABLE `bidsetting` DISABLE KEYS */;
+INSERT INTO `bidsetting` VALUES (6,'matt',1,0,20.00);
 /*!40000 ALTER TABLE `bidsetting` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -284,7 +287,7 @@ CREATE TABLE `users` (
   `user_type` enum('END','CR','ADMIN') NOT NULL,
   `username` varchar(50) NOT NULL DEFAULT 'root',
   `password` varchar(50) NOT NULL DEFAULT 'root',
-  PRIMARY KEY (`username`,`password`)
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -294,7 +297,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('ADMIN','map616@cs','password123'),('END','matt','password999'),('END','test1@rut','password567'),('CR','test2@rut','password000'),('CR','test3@rut','password999'),('END','test5','password123'),('END','test5','password333');
+INSERT INTO `users` VALUES ('ADMIN','map616@cs','password123'),('END','matt','password999'),('END','test1@rut','password567'),('CR','test2@rut','password000'),('CR','test3@rut','password999'),('END','test5','password123'),('END','test6','password333');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -307,4 +310,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-07 10:39:58
+-- Dump completed on 2023-08-07 20:18:22

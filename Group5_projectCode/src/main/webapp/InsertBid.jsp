@@ -24,9 +24,8 @@
        			ApplicationDB db = new ApplicationDB();	
        			Connection con = db.getConnection();
     			
-
-                // Prepare the query using PreparedStatement
-                String bidQuery = "INSERT INTO bid SELECT MAX(bid_id)+1, ?, ?, ? FROM bid JOIN auction USING (auction_id) WHERE auction_id = ? AND amount >= minimum_bid_increment + ?";
+				// Prepare the query using PreparedStatement 
+                String bidQuery = "INSERT INTO bid (bid_id, auction_id, bidder_username, amount) SELECT IF(ISNULL(MAX(bid_id)), 1, MAX(bid_id)+1), ?, ?, ? FROM auction left join bid USING (auction_id) WHERE auction_id = ? AND ? >= current_price + minimum_bid_increment GROUP BY auction_id;";
                 PreparedStatement ps = con.prepareStatement(bidQuery);
 
                 // Set the parameters in the PreparedStatement
@@ -36,18 +35,24 @@
                 ps.setInt(4, Integer.valueOf(request.getParameter("auctionID")));
                 ps.setDouble(5, Double.valueOf(request.getParameter("amount")));
 
-                // Execute the insertion query
-                ps.executeUpdate();               
+                if (ps.executeUpdate() > 0) {
+                	String auctionUpdate = "UPDATE auction SET current_price = (SELECT MAX(amount) FROM bid WHERE auction_id = ?) WHERE auction_id = ?";
+                    ps = con.prepareStatement(auctionUpdate);
 
-                // Close the resources
-                ps.executeQuery();
+                        // Set the parameters in the PreparedStatement
+                    ps.setInt(1, Integer.valueOf(request.getParameter("auctionID")));
+                    ps.setInt(2, Integer.valueOf(request.getParameter("auctionID")));
+                        
+                    ps.executeUpdate();             	
+                }
+                
+                ps.close();
                 con.close();
                 
-                response.sendRedirect("auction.jsp?auctionID=" + request.getParameter("auctionID"));
+                response.sendRedirect("Auction.jsp?auctionID=" + request.getParameter("auctionID"));
 
             } catch (Exception e) {
                 e.printStackTrace();
-                out.println("An error occurred in processing the request.");
             }
         }
     %>
