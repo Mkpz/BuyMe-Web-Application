@@ -28,10 +28,8 @@
 
             while (rs.next()) {
                 String auctionId = rs.getString("auction_id");
-                String brand = rs.getString("brand");
-                String gender = rs.getString ("gender");
                
-                out.print("<p><br><a href='Auction.jsp?auctionID=" + auctionId + "'>" + auctionId + "</a>" + ",&nbsp brand:  " + brand + ",&nbsp gender:  " + gender + "</p>");
+                out.print("<p><br><a href='Auction.jsp?auctionID=" + auctionId + "'>" + auctionId + "</a></p>");
             }
 
             // Close the resources
