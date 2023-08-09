@@ -2,17 +2,16 @@
     pageEncoding="ISO-8859-1" import="group5.*"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
-    
-   
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	</head>
-	<body>	
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Auction History</title>
+</head>
+<body>	
 	
-   <h1>All Auctions</h1>
-<h2> Auctions List:</h2>
+   <h1>Below is a History of Auctions</h1>
+<h2> Auction History:</h2>
      <%
         try {
             // Get the database connection
@@ -22,8 +21,8 @@
             Statement stmt = con.createStatement();
 
             // Retrieve all auction records from the database
-            String allauctionquery = "SELECT * FROM auction JOIN CLOTHES USING (manufacture_id) ";
-            ResultSet rs = stmt.executeQuery(allauctionquery);
+            String auctionHistory = "SELECT * FROM auction JOIN CLOTHES USING (manufacture_id) WHERE auction.end_time < NOW()";
+            ResultSet rs = stmt.executeQuery(auctionHistory);
 
 
             while (rs.next()) {
@@ -49,9 +48,7 @@
 		</form>
 		
 		<br><br>
-		<form action="AuctionHistory.jsp" method = "post">
-		<input type="submit" value="Auction History">
-		</form>
+
     
 	</body>
 </html>

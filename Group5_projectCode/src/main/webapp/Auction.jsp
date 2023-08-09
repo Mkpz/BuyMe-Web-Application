@@ -149,7 +149,17 @@
 		
 	<%
 	
-	if (!rs.getString("seller_username").equals(session.getAttribute("username"))) {
+	String currentDate = "SELECT NOW() as current_datetime";
+	PreparedStatement datePrepare = con.prepareStatement(currentDate);
+	ResultSet dateSet = datePrepare.executeQuery();
+	int expired = 0;
+	if(dateSet.next()){
+		String date = dateSet.getString("current_datetime");
+		expired = rs.getString("end_time").compareTo(date);
+	}
+	
+	
+	if (!rs.getString("seller_username").equals(session.getAttribute("username")) && expired >= 0) {
 	
 	%>
 		
@@ -200,6 +210,12 @@
         	<input type="hidden" name="existence" value=<%=flag%>>
         	<input type="submit" value="Bid">       
     	</form>
+    	
+    	<br><br>
+    	
+    	<form action="HomePage.jsp" method = "post">
+		<input type="submit" value="Home Page">
+		</form>
     <%
 	}
 	

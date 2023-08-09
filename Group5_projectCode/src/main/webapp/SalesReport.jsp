@@ -42,7 +42,7 @@
 
 		<br><br>
 				<form action="AdminHomePage.jsp">
-					<input type="submit" style="font-size:20px;height:30px;width:250px" value="Admin Home Page">
+					<input type="submit" style="font-size:20px;height:30px;width:150px" value="Main Menu">
 				</form>
 		<br><br>
 
