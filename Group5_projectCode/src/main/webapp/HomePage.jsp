@@ -21,8 +21,16 @@
     <!-- Header for viewing items -->
 	  <h1>View items currently up for auction</h1>
 	  <p>Insert item tags (i.e blue, 32, high rise):</p>
-	  <input type="text" placeholder="Enter tags...">
-	  <button type="button">Search</button>
+	  <form action="AllAuctions.jsp" method="post">
+	  <input type="text" style="font-size:20px;height:30px;width:150px" placeholder="Enter tags...">
+	  <button type="button" style="font-size:20px;height:30px;width:150px">Search</button>
+	  
+	  
+	        <input type="submit" style="font-size:20px;height:30px;width:150px" value="View All">
+	    </form>
+	    <br>
+<br></br>
+	
 	
 	  <!-- Header for selling a top -->
 	  <h1>Sell Tops!</h1>
