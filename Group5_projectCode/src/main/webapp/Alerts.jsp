@@ -49,11 +49,20 @@
 	    		//select query
 	    		String alertQuery = "SELECT DISTINCT a.username, a.alert_id FROM alerts a JOIN auction ON a.alert_id = auction.manufacture_id";
 	    		String wonAuctionQuery = "SELECT a.buyer_username, a.auction_id FROM auction a";
+	    		//select highest bid placed by the user for each auction
+	    		String auctionQuery = "SELECT auction_id, (SELECT MAX(amount) FROM bid WHERE bidder_username = ? AND auction_id = b.auction_id) AS your_highest_bid, (SELECT 					MAX(amount) FROM bid WHERE auction_id = b.auction_id) AS highest_bid_auction, (SELECT MAX(amount) FROM bid) AS highest_bid_overall FROM bid b GROUP BY auction_id;";
+	    		
+	    		
 	    		//execute the created query
 	    		ResultSet result = stmt.executeQuery(alertQuery);
 	    		ResultSet wonResults = stmtTwo.executeQuery(wonAuctionQuery);
 	    		//gets username of active session
 	    		String username = (String)session.getAttribute("username");
+	    		
+	    		PreparedStatement auctionFind = con.prepareStatement(auctionQuery);
+	    		auctionFind.setString(1, username);
+	    		ResultSet bidResults = auctionFind.executeQuery();
+	    		
 	    		
 	    		//Make an HTML table to show the results in:
 				out.print("<table>");
@@ -114,6 +123,23 @@
 	    		}
 	    			out.print("</center>");
 	    	}
+				
+				//alert buyer if a higher bid has been placed 
+			while(bidResults.next()) {
+				out.print("<tr>");
+				//make a column
+				out.print("<td>");
+				out.print("<center>");
+				
+				int auction = bidResults.getInt(1);
+				int userHighest = bidResults.getInt(2);
+				int auctionHighest = bidResults.getInt(3);
+				
+				if(auctionHighest > userHighest) {
+					out.print("There is a higher bid then yours on auction " + auction + " place a higher bid, or you may lose the auction"); 
+				}
+			}
+			out.print("</center>");
 	    		
 	    		
 	    		
