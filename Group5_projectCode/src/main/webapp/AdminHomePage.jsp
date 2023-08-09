@@ -35,7 +35,7 @@
 		</table>
 		<input type="submit" value="Register">
 		</form>
-	<br>
+	<br><br>
 		  
 	
 		<h1>Generate Sales Report</h1>
@@ -51,7 +51,7 @@
 		<option value="5">Best-Selling Items</option>
 		<option value="6">Best Buyers</option>
 		</select>
-	   	<br>
+	   	<br><br>
 	   	
 	   	<input type="hidden" name="type" value="reportStyle">
 	    <button type="submit">Generate Report</button>
@@ -62,7 +62,7 @@
 		  <!-- Header Deleting an Account -->
 	 	 
 	 	
-	     
+	     <br><br>
 	     <form action="LandingPage.jsp" method="post">
 	        <input type="submit" value="Logout">
 	    </form>

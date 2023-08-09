@@ -43,6 +43,10 @@
 			out.print(e);
 		}
     %>
+    
+    <form action="HomePage.jsp" method = "post">
+		<input type="submit" value="Home Page">
+		</form>
     </center>
 	</body>
 </html>

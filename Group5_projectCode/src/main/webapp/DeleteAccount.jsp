@@ -26,6 +26,13 @@
 		
 		</table>
 		<input type="submit" value="Delete Account">
+		
+		<br><br>
+
+		</form>
+		
+		<form action="HomePage.jsp" method = "post">
+		<input type="submit" value="Home Page">
 		</form>
 	<br>
 

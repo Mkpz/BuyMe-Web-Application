@@ -36,5 +36,11 @@
         <input type="hidden" name="attr2" value=<%=request.getParameter("attr2")%>>
         <input type="hidden" name="attr3" value=<%=request.getParameter("attr3")%>>
     </form>
+    
+	    <br><br>
+		<form action="HomePage.jsp" method = "post">
+			<input type="submit" value="Home Page">
+			</form>	
+		<body>
 </body>
 </html>
