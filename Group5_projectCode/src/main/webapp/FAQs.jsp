@@ -37,10 +37,90 @@
     } else if(userType.equalsIgnoreCase("ADMIN") || userType.equalsIgnoreCase("CR")) {
 %>
         <h1>FAQ for Admins and Customer Representatives</h1>
+        <h2> This is the list of all questions</h2>
         
-        <!-- Display all questions and allow answering them -->
-        <!-- ... (fetch and display all questions from the database and provide an interface for answering) ... -->
+        <%
+        
+        try {
+			
+			//Get the database connection
+			ApplicationDB db = new ApplicationDB();	
+			Connection con = db.getConnection();		
 
+			//Create a SQL statement
+			Statement stmt = con.createStatement();
+			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
+			String str = "SELECT answer, question, qid FROM faqs";
+			//Run the query against the database.
+			ResultSet result = stmt.executeQuery(str);
+			
+			out.print("<style>");
+		    out.print("table { border-collapse: collapse; width: 100%; }");
+		    out.print("th, td { border: 1px solid black; padding: 8px; text-align: left; }");
+		    out.print("</style>");
+
+		    out.print("<table>");
+		    
+		    // Create header row with column names
+		    out.print("<tr>");
+		    out.print("<th>Answer</th>");
+		    out.print("<th>Question</th>");
+		    out.print("<th>QID</th>");
+		    out.print("</tr>");
+
+		    // Parse and display the results
+		    while (result.next()) {
+		        out.print("<tr>");
+		        out.print("<td>" + result.getString("answer") + "</td>");
+		        out.print("<td>" + result.getString("question") + "</td>");
+		        out.print("<td>" + result.getString("qid") + "</td>");
+		        out.print("</tr>");
+		    }
+
+		    out.print("</table>");
+		    
+		    
+		 // Update Table
+	        String answer = request.getParameter("answer"); 
+	        String qid = request.getParameter("qid");
+
+	        if (answer != null && qid != null) {
+
+	        	String updateQuery = "UPDATE faqs set answer = ? where qid = ?";
+	            PreparedStatement updateStatement = con.prepareStatement(updateQuery);
+	            
+	            int qidValue = Integer.valueOf(qid);
+	       		updateStatement.setString(1, answer);
+	       		updateStatement.setInt(2, qidValue);
+	       		
+	       		updateStatement.executeUpdate();
+
+				response.sendRedirect("FAQs.jsp");
+	        } 
+
+			//close the connection.
+			db.closeConnection(con);
+		} catch (Exception e) {
+			out.print("Invalid Entry");
+			out.print("To answer or edit an Answer all fields must be filled in");
+		}	
+        
+        
+        %>
+		
+		<h2> To change a response or initiate a response enter the question id with your answer</h2>
+		<form action="FAQs.jsp" method="post">
+            <label for="answer">Answer a Question:</label><br>
+    		<textarea id="answer" name="answer" rows="4" cols="50" required></textarea><br>
+            <br>
+            <label for="qid">Question ID:</label><br>
+            <input type="text" id="qid" name="qid" required><br>
+            <input type="submit" value="Submit">
+        </form>
+        <br><br>
+        <form action="CustomerRepHomePage.jsp" method = "post">
+		<input type="submit" value="Home Page">
+		</form>
 <%  
     } else {
         // Handle unknown user type

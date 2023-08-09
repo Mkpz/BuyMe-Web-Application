@@ -59,13 +59,10 @@
 		        String auction_id = request.getParameter("auction_id");
 		        String username = request.getParameter("username");
 		        
-		        System.out.println(bid_id);
-		        System.out.println(auction_id);
-		        System.out.println(username);
+		    
 
 		        if (bid_id != null && username != null && auction_id != null) {
 		        	
-		        	System.out.println("here");
 		            
 		        	String deleteQuery = "DELETE FROM bid WHERE bid_id = ? and auction_id = ? and bidder_username = ?";
 		            
