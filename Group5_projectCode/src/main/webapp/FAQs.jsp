@@ -8,6 +8,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>FAQ Page</title>
+     <script>
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this question?');
+        }
+    </script>
 </head>
 <body>
 
@@ -135,11 +140,26 @@
 		        out.print("<td>" + result.getString("answer") + "</td>");
 		        out.print("<td>" + result.getString("question") + "</td>");
 		        out.print("<td>" + result.getString("qid") + "</td>");
+		     // Add delete button
+		        out.print("<td><form action='FAQs.jsp' method='post'>");
+		        out.print("<input type='hidden' name='deleteQID' value='" + result.getString("qid") + "'/>");
+		        out.print("<input type='submit' value='Delete'/></form></td>");
 		        out.print("</tr>");
 		    }
 
 		    out.print("</table>");
 		    
+		 // Handling the deletion of a question
+            String deleteQID = request.getParameter("deleteQID");
+            if (deleteQID != null) {
+                String deleteQuery = "DELETE FROM faqs WHERE qid = ?";
+                PreparedStatement deleteStatement = con.prepareStatement(deleteQuery);
+                deleteStatement.setInt(1, Integer.valueOf(deleteQID));
+                deleteStatement.executeUpdate();
+                deleteStatement.close();
+                response.sendRedirect("FAQs.jsp");
+                return;
+            }
 		    
 		 // Update Table
 	        String answer = request.getParameter("answer"); 
