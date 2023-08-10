@@ -91,16 +91,28 @@
 				key = rs.getInt("manufacture_id");
 			}
 			
+			java.sql.Timestamp closingTimeDate= new java.sql.Timestamp(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(request.getParameter("closingDateTime")).getTime());
+			
+			java.sql.Timestamp currentTimeDate= new java.sql.Timestamp(System.currentTimeMillis());
+
+			
+			if (closingTimeDate.after(currentTimeDate)) {
 			ps = con.prepareStatement(auctionQuery, Statement.RETURN_GENERATED_KEYS);
 			
 			ps.setInt(1, key);
-			ps.setTimestamp(2, new java.sql.Timestamp(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(request.getParameter("closingDateTime")).getTime()));
+			ps.setTimestamp(2, closingTimeDate);
 			ps.setDouble(3, Double.valueOf(request.getParameter("price")));
 			ps.setString(4, session.getAttribute("username").toString());
 			ps.setDouble(5, Double.valueOf(request.getParameter("hiddenPrice")));
 			ps.setDouble(6, Double.valueOf(request.getParameter("bidIncrement")));
 			
 			ps.executeUpdate();
+			}
+			
+			else {
+				
+				response.sendRedirect("HomePage.jsp");
+			}
 			
 			key = -1;
 			try (ResultSet keys = ps.getGeneratedKeys()){
