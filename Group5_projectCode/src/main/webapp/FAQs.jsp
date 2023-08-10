@@ -12,23 +12,40 @@
 <body>
 
 <%
-    String userType = (String) session.getAttribute("user_type");
-    if (userType == null) {
-        // No user type specified, maybe not logged in
-        response.sendRedirect("LandingPage.jsp");
-        return; // stop the JSP from processing further
-    }
+String userType = (String) session.getAttribute("user_type");
+if (userType == null) {
+    response.sendRedirect("LandingPage.jsp");
+    return;
+}
 
-    if(userType.equalsIgnoreCase("END")) {
+ApplicationDB db = new ApplicationDB();
+Connection con = db.getConnection();
+
+// Handle newQuestion insertion for END users
+String newQuestion = request.getParameter("newQuestion");
+if (newQuestion != null && userType.equalsIgnoreCase("END")) {
+    try {
+        String insertQuery = "INSERT INTO faqs (question) VALUES (?)";
+        PreparedStatement insertStatement = con.prepareStatement(insertQuery);
+        insertStatement.setString(1, newQuestion);
+        insertStatement.executeUpdate();
+        out.println("Question submitted successfully!");
+        insertStatement.close();
+    } catch (Exception e) {
+        out.print("Error while inserting question: " + e.getMessage());
+    }
+}
+
+if(userType.equalsIgnoreCase("END")) {
 %>
-        <h1>FAQ for End Users</h1>
-        
-        <!-- Allow asking questions -->
-        <form action="SubmitQuestionServlet" method="post">
-            <label for="newQuestion">Ask a question:</label><br>
-            <input type="text" id="newQuestion" name="newQuestion" required><br>
-            <input type="submit" value="Submit">
-        </form>
+    <h1>FAQ for End Users</h1>
+    
+    <!-- Allow asking questions -->
+    <form action="FAQs.jsp" method="post">
+        <label for="newQuestion">Ask a question:</label><br>
+        <input type="text" id="newQuestion" name="newQuestion" required><br>
+        <input type="submit" value="Submit">
+    </form>
         
         <!-- Display answered questions -->
         <!-- ... (fetch and display answered questions from the database) ... -->
@@ -43,9 +60,6 @@
         
         try {
 			
-			//Get the database connection
-			ApplicationDB db = new ApplicationDB();	
-			Connection con = db.getConnection();		
 
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
