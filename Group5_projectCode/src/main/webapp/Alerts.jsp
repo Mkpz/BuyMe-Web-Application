@@ -49,12 +49,13 @@
 	    		Statement stmtTwo = con.createStatement();
 	    		//select query
 	    		String alertQuery = "SELECT DISTINCT a.username, a.alert_id FROM alerts a JOIN auction ON a.alert_id = auction.manufacture_id";
-	    		String wonAuctionQuery = "SELECT a.buyer_username, a.auction_id FROM auction a";
+	    		String wonAuctionQuery = "SELECT a.buyer_username, a.auction_id FROM auction a ORDER BY a.auction_id DESC";
 	    		//select highest bid placed by the user for each auction
-	    		String auctionQuery = "SELECT auction_id, (SELECT MAX(amount) FROM bid WHERE bidder_username = ? AND auction_id = b.auction_id) AS your_highest_bid, (SELECT 					MAX(amount) FROM bid WHERE auction_id = b.auction_id) AS highest_bid_auction, (SELECT MAX(amount) FROM bid) AS highest_bid_overall FROM bid b GROUP BY auction_id";
+	    		String auctionQuery = "SELECT auction_id, (SELECT MAX(amount) FROM bid WHERE bidder_username = ? AND auction_id = b.auction_id) AS your_highest_bid, (SELECT MAX(amount) FROM bid WHERE auction_id = b.auction_id) AS highest_bid_auction, (SELECT MAX(amount) FROM bid) AS highest_bid_overall FROM bid b GROUP BY auction_id ORDER BY auction_id DESC";
 	    		//query to be used for upper limit alerts		
 	    		String upperLimitQuery = "SELECT a.auction_id, MAX(CASE WHEN b.bidder_username = ? THEN b.amount END) AS your_highest_bid, MAX(a.highest_bid_auction) AS highest_bid_auction, a.highest_bid_overall, MAX(bs.autobid_upper_limit) AS autobid_upper_limit FROM (SELECT auction_id, MAX(amount) AS highest_bid_auction, (SELECT MAX(amount) FROM bid) AS highest_bid_overall FROM bid GROUP BY auction_id) a LEFT JOIN bid b ON a.auction_id = b.auction_id LEFT JOIN bidsetting bs ON a.auction_id = bs.auction_id AND b.bidder_username = bs.bidder_username GROUP BY a.auction_id, a.highest_bid_auction, a.highest_bid_overall";
-
+				// Strin upperLimitQuery = "SELECT DISTINCT a.auction_id FROM bid JOIN bidsetting bs USING (auction_id, bidder_username) WHERE bs.bidder_username = ? AND bs.autobid_upper_limit < bs.autobid_increment + (SELECT MAX(b.amount) FROM bid b WHERE b.auction_id = bs.auction_id)";	
+	    				
 	    		//execute the created query
 	    		ResultSet result = stmt.executeQuery(alertQuery);
 	    		ResultSet wonResults = stmtTwo.executeQuery(wonAuctionQuery);

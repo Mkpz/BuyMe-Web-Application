@@ -26,6 +26,35 @@
    			ApplicationDB db = new ApplicationDB();	
    			Connection con = db.getConnection();
 			
+   			
+   		 	// Get the auction ID from the request parameter
+            // Query to get auction details including end_time
+            String auctionQuery = "SELECT end_time <= CURRENT_TIMESTAMP() FROM auction WHERE auction_id = ?";
+            PreparedStatement auctionPs = con.prepareStatement(auctionQuery);
+            auctionPs.setInt(1, Integer.valueOf(request.getParameter("auctionID")));
+
+            ResultSet auctionRs = auctionPs.executeQuery();
+            boolean showBiddingForms = true;
+
+            if (auctionRs.next() && auctionRs.getBoolean(1)) {
+            	// Query to find the highest bidder for the auction
+            	showBiddingForms = false;
+                String winnerQuery = "UPDATE auction a, bid b SET a.buyer_username = b.bidder_username WHERE a.auction_id = ? AND a.current_price >= a.hidden_minimum_price AND b.bid_id = (SELECT MAX(b2.bid_id) FROM bid b2 WHERE b2.auction_id = a.auction_id)";
+
+				PreparedStatement winnerPs = con.prepareStatement(winnerQuery);
+                winnerPs.setInt(1, Integer.valueOf(request.getParameter("auctionID")));
+
+                winnerPs.executeUpdate();
+                winnerPs.close();
+
+            }
+
+            auctionRs.close();
+            auctionPs.close();
+   			
+   			
+   			
+   			
    			String query = "SELECT * FROM auction JOIN clothes USING (manufacture_id)  WHERE auction_id = ?";
 
 			PreparedStatement ps = con.prepareStatement(query);	
@@ -73,6 +102,18 @@
 		<table>
 				<tr>    
 					<td>Seller</td><td><%=rs.getString("seller_username")%></td>
+				</tr>
+	<%
+				String buyer = rs.getString("buyer_username");
+				if (showBiddingForms) {
+					buyer = "Auction has not eded yet!";
+				} 
+				else if (buyer == null) {
+					buyer = "Item not sold! Auction Ended!";
+				}
+	%>
+				<tr>    
+					<td>Buyer</td><td><%=buyer%></td>
 				</tr>
 	<%
 					if (category == 1) {
@@ -149,17 +190,7 @@
 		
 	<%
 	
-	String currentDate = "SELECT NOW() as current_datetime";
-	PreparedStatement datePrepare = con.prepareStatement(currentDate);
-	ResultSet dateSet = datePrepare.executeQuery();
-	int expired = 0;
-	if(dateSet.next()){
-		String date = dateSet.getString("current_datetime");
-		expired = rs.getString("end_time").compareTo(date);
-	}
-	
-	
-	if (!rs.getString("seller_username").equals(session.getAttribute("username")) && expired >= 0) {
+	if (!rs.getString("seller_username").equals(session.getAttribute("username")) && showBiddingForms) {
 	
 	%>
 		
