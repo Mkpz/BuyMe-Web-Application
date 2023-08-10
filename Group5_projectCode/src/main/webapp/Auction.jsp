@@ -175,10 +175,10 @@
 					<td>Age</td><td><%=rs.getString("age")%></td>
 				</tr>
 				<tr>
-					<td>Start Time</td><td><%=rs.getDate("start_time").toString()%></td>
+					<td>Start Time</td><td><%=rs.getTimestamp("start_time").toString()%></td>
 				</tr>
 				<tr>
-					<td>End Time</td><td><%=rs.getDate("end_time").toString()%></td>
+					<td>End Time</td><td><%=rs.getTimestamp("end_time").toString()%></td>
 				</tr>
 				<tr>
 					<td>Current Price</td><td><%=rs.getDouble("current_price")%></td>
