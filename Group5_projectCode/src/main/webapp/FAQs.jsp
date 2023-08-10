@@ -198,10 +198,54 @@
             <input type="text" id="qid" name="qid" required><br>
             <input type="submit" value="Submit">
         </form>
+        
+		
+		<br>
+		<h2> To remove a question from the FAQ's page, enter the QID of the question to delete</h2>
+		<form action="FAQs.jsp" method="post">
+            <br>
+            <label for="qidDelete">Delete Question (QID):</label><br>
+            <input type="text" id="qidDelete" name="qidDelete" required><br>
+            <input type="submit" value="Delete">
+        </form>
+        
         <br><br>
         <form action="CustomerRepHomePage.jsp" method = "post">
 		<input type="submit" value="Home Page">
 		</form>
+		
+		<%
+		
+		try {
+					
+		        	ApplicationDB db = new ApplicationDB();
+		    		Connection con = db.getConnection();
+					
+		
+			        String deleteQid = request.getParameter("qidDelete"); 
+			        if (deleteQid != null) {
+		
+			        	String deleteQuery = "DELETE from faqs where qid = ?";
+			            PreparedStatement updateStatement = con.prepareStatement(deleteQuery);
+			            
+			            int qidValue = Integer.valueOf(deleteQid);
+			            
+			       		updateStatement.setInt(1, qidValue);   		
+			       		updateStatement.executeUpdate();
+		
+						response.sendRedirect("FAQs.jsp");
+			        } 
+		
+					//close the connection.
+					db.closeConnection(con);
+				} catch (Exception e) {
+					out.print("Invalid Entry");
+					out.print("To answer or edit an Answer all fields must be filled in");
+				}	
+				
+				
+				%>
+		
 <%  
     } else {
         // Handle unknown user type
