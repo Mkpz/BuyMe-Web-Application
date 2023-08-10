@@ -11,44 +11,90 @@
 </head>
 <body>
 
-<%
-String userType = (String) session.getAttribute("user_type");
-if (userType == null) {
-    response.sendRedirect("LandingPage.jsp");
-    return;
-}
+	<%
+	String userType = (String) session.getAttribute("user_type");
+	if (userType == null) {
+	    response.sendRedirect("LandingPage.jsp");
+	    return;
+	}
+	
+	
+	
+	if(userType.equalsIgnoreCase("END")) {
+	%>
+	    <h1>FAQ for End Users</h1>
+	    
+	    <%     
 
-ApplicationDB db = new ApplicationDB();
-Connection con = db.getConnection();
+		// Handle newQuestion insertion for END users
+	
+		    try {
+		    	
+		    	ApplicationDB db = new ApplicationDB();
+				Connection con = db.getConnection();
 
-// Handle newQuestion insertion for END users
-String newQuestion = request.getParameter("newQuestion");
-if (newQuestion != null && userType.equalsIgnoreCase("END")) {
-    try {
-        String insertQuery = "INSERT INTO faqs (question) VALUES (?)";
-        PreparedStatement insertStatement = con.prepareStatement(insertQuery);
-        insertStatement.setString(1, newQuestion);
-        insertStatement.executeUpdate();
-        out.println("Question submitted successfully!");
-        insertStatement.close();
-    } catch (Exception e) {
-        out.print("Error while inserting question: " + e.getMessage());
-    }
-}
+		    	Statement stmt = con.createStatement();
+				//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
+				String str = "SELECT answer, question FROM faqs";
+				//Run the query against the database.
+				ResultSet result = stmt.executeQuery(str);
+				
+				out.print("<style>");
+			    out.print("table { border-collapse: collapse; width: 100%; }");
+			    out.print("th, td { border: 1px solid black; padding: 8px; text-align: left; }");
+			    out.print("</style>");
+	
+			    out.print("<table>");
+			    
+			    // Create header row with column names
+			    out.print("<tr>");
+			    out.print("<th>Answer</th>");
+			    out.print("<th>Question</th>");
+			    out.print("</tr>");
+	
+			    // Parse and display the results
+			    while (result.next()) {
+			        out.print("<tr>");
+			        out.print("<td>" + result.getString("answer") + "</td>");
+			        out.print("<td>" + result.getString("question") + "</td>");
+			        out.print("</tr>");
+			    }
+	
+			    out.print("</table>");
+			    
+			    String insertQuery = "INSERT INTO faqs (question) VALUES (?)";
+		        PreparedStatement insertStatement = con.prepareStatement(insertQuery);
+		        String newQuestion = request.getParameter("newQuestion");
+		        insertStatement.setString(1, newQuestion);
+		        
+		        
+		        if(newQuestion != null) {
+		        	
+		        	insertStatement.executeUpdate();
+		        	out.println("Question submitted successfully!");
+		        	
+			        insertStatement.close();
+			        response.sendRedirect("FAQs.jsp");
+		        }
+		        
+		    	
+		    } catch (Exception e) {
+		        out.print("Ask a question below");
+		    }
+	%>
+	
+	<!-- Allow asking questions -->
+	    <form action="FAQs.jsp" method="post">
+	        <label for="newQuestion">Ask a question:</label><br>
+	        <textarea id="newQuestion" name="newQuestion" rows="4" cols="50" required></textarea><br><br>
+	        <input type="submit" value="Submit">
+	    </form>
+	    
+	    <br><br>
+        <form action="HomePage.jsp" method = "post">
+		<input type="submit" value="Home Page">
+		</form>
 
-if(userType.equalsIgnoreCase("END")) {
-%>
-    <h1>FAQ for End Users</h1>
-    
-    <!-- Allow asking questions -->
-    <form action="FAQs.jsp" method="post">
-        <label for="newQuestion">Ask a question:</label><br>
-        <input type="text" id="newQuestion" name="newQuestion" required><br>
-        <input type="submit" value="Submit">
-    </form>
-        
-        <!-- Display answered questions -->
-        <!-- ... (fetch and display answered questions from the database) ... -->
 
 <%  
     } else if(userType.equalsIgnoreCase("ADMIN") || userType.equalsIgnoreCase("CR")) {
@@ -60,7 +106,8 @@ if(userType.equalsIgnoreCase("END")) {
         
         try {
 			
-
+        	ApplicationDB db = new ApplicationDB();
+    		Connection con = db.getConnection();
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
