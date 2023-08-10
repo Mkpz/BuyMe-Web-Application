@@ -101,10 +101,10 @@
 	%>		
 		<table>
 				<tr>    
-					<td>Seller</td><td><%=rs.getString("seller_username")%></td>
+					<td>Seller</td><td><%="<a href='ParticipationHistory.jsp?username=" + rs.getString("seller_username") + "'>" + rs.getString("seller_username") + "</a>"%></td>
 				</tr>
 	<%
-				String buyer = rs.getString("buyer_username");
+				String buyer = "<a href='ParticipationHistory.jsp?username=" + rs.getString("buyer_username") + "'>" + rs.getString("buyer_username") + "</a>";
 				if (showBiddingForms) {
 					buyer = "Auction has not eded yet!";
 				} 
@@ -187,6 +187,12 @@
 					<td>Minimum Bid Increment</td><td><%=rs.getDouble("minimum_bid_increment")%></td>
 				</tr>
 		</table>
+		
+		<br><br>
+		<form method="post" action="AuctionBidHistory.jsp">
+        	<input type="hidden" name="auctionID" value=<%=request.getParameter("auctionID")%>>
+        	<input type="submit" value="View Bid History">       
+    	</form>
 		
 	<%
 	
