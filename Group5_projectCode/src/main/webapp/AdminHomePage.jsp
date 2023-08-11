@@ -2,6 +2,13 @@
     pageEncoding="ISO-8859-1" import="group5.*"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+    
+    <%
+    	if (session == null || session.getAttribute("username") ==  null || !"ADMIN".equals(session.getAttribute("user_type"))) {
+    		response.sendRedirect("LandingPage.jsp");
+    	}
+    %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +70,7 @@
 	 	 
 	 	
 	     <br><br>
-	     <form action="LandingPage.jsp" method="post">
+	     <form action="Logout.jsp" method="post">
 	        <input type="submit" value="Logout">
 	    </form>
 	     

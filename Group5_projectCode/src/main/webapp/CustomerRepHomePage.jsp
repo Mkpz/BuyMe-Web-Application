@@ -4,7 +4,7 @@
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
     
     <%
-    	if (session == null || session.getAttribute("username") == null) {
+    	if (session == null || session.getAttribute("username") == null || !"CR".equals(session.getAttribute("user_type"))) {
     		response.sendRedirect("LandingPage.jsp");
     	}
     %>
@@ -45,7 +45,7 @@
 	    
 	    <br>
 	    <br>
-	    <form action="LandingPage.jsp" method="post">
+	    <form action="Logout.jsp" method="post">
 	        <input type="submit" value="Logout">
 	    </form>
 
