@@ -18,10 +18,7 @@
 		<%
 			try {
 				
-			// Get the request object from the servlet or JSP
-			HttpServletRequest req = (HttpServletRequest) request;
-			// Get the referring page (referer)
-			String referringPage = req.getHeader("referer");
+			
 
     		//Get the database connection
    			ApplicationDB db = new ApplicationDB();	
@@ -40,7 +37,9 @@
 			ps.setString(2, username);
 			ps.setString(3, password);
 			
-			if(referringPage.equalsIgnoreCase("http://localhost:8080/Group5_projectCode/AdminHomePage.jsp")) {
+			String isAdmin = (String)session.getAttribute("user_type");
+		
+			if(isAdmin.equalsIgnoreCase("ADMIN")) {
 				ps.setString(1, "CR");
 			} else {
 				ps.setString(1, "END");
@@ -60,7 +59,7 @@
 			else {
 				// Invalid login, redirect back to the login page
 				out.print("Please fill in all required fields to register account");
-				response.sendRedirect("LandingPage.jsp");
+
 			}
 			
 			ps.close();
