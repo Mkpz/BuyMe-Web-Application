@@ -28,7 +28,13 @@
 	if(userType.equalsIgnoreCase("END")) {
 	%>
 	    <h1>FAQ for End Users</h1>
-	    
+	      <!-- Search bar for END users -->
+    <form action="FAQs.jsp" method="post">
+        <label for="searchKeyword">Search FAQs:</label>
+        <input type="text" id="searchKeyword" name="searchKeyword" placeholder="Enter keywords...">
+        <input type="submit" value="Search">
+    </form>
+    <br><br>
 	    <%     
 
 		// Handle newQuestion insertion for END users
@@ -37,12 +43,22 @@
 		    	
 		    	ApplicationDB db = new ApplicationDB();
 				Connection con = db.getConnection();
+				String searchKeyword = request.getParameter("searchKeyword");
+				
+				
+				String str;
+		        PreparedStatement stmt;
 
-		    	Statement stmt = con.createStatement();
-				//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
-				String str = "SELECT answer, question FROM faqs";
-				//Run the query against the database.
-				ResultSet result = stmt.executeQuery(str);
+		        if (searchKeyword != null && !searchKeyword.trim().isEmpty()) {
+		            str = "SELECT answer, question FROM faqs WHERE question LIKE ?";
+		            stmt = con.prepareStatement(str);
+		            stmt.setString(1, "%" + searchKeyword.trim() + "%");
+		        } else {
+		            str = "SELECT answer, question FROM faqs";
+		            stmt = con.prepareStatement(str);
+		        }
+
+		        ResultSet result = stmt.executeQuery();
 				
 				out.print("<style>");
 			    out.print("table { border-collapse: collapse; width: 100%; }");
@@ -64,8 +80,12 @@
 			        out.print("<td>" + result.getString("question") + "</td>");
 			        out.print("</tr>");
 			    }
+			    if (!result.isBeforeFirst()) {
+		            out.println("FAQs found for the given keyword.");
+		        }
+
+		        out.print("</table>");
 	
-			    out.print("</table>");
 			    
 			    String insertQuery = "INSERT INTO faqs (question) VALUES (?)";
 		        PreparedStatement insertStatement = con.prepareStatement(insertQuery);
