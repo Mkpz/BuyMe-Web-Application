@@ -247,7 +247,7 @@
 			</form>	
 			<br>
 			
-	    <form action="LandingPage.jsp" method="post">
+	    <form action="Logout.jsp" method="post">
 	        <input type="submit" value="Logout">
 	    </form>
 		<body><br>

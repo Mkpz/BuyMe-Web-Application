@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     
     <%
-    	if (session == null || session.getAttribute("username") == null) {
+    	if (session == null || session.getAttribute("username") == null || !"END".equals(session.getAttribute("user_type"))) {
     		response.sendRedirect("LandingPage.jsp");
     	}
     %>
@@ -63,7 +63,7 @@
 	        <input type="submit" style="font-size:20px;height:30px;width:150px"  value="View Alerts">
 	    </form>
 	    <br>
-	    <form action="LandingPage.jsp" method="post">
+	    <form action="Logout.jsp" method="post">
 	        <input type="submit" style="font-size:20px;height:30px;width:150px"  value="Logout">
 	    </form>
 	    
