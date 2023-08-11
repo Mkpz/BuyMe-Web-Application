@@ -50,6 +50,7 @@
 		<form action="AuctionHistory.jsp" method = "post">
 		<input type="submit" value="Auction History">
 		</form>
+		
     
 	</body>
 </html>

@@ -245,6 +245,12 @@
 		<form action="HomePage.jsp" method = "post">
 			<input type="submit" value="Home Page">
 			</form>	
-		<body>
+			<br>
+			
+	    <form action="LandingPage.jsp" method="post">
+	        <input type="submit" value="Logout">
+	    </form>
+		<body><br>
+	
 </body>
 </html>

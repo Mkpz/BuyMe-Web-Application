@@ -64,5 +64,13 @@
 			    
 		
 		%>
+		<br>
+	    <form action="HomePage.jsp" method="post">
+	        <input type="submit" value="Home">
+	    </form>
+		<br>
+		  <form action="LandingPage.jsp" method="post">
+	        <input type="submit" value="Log Out">
+	    </form>
 </body>
 </html>

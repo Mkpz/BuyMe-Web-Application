@@ -447,6 +447,11 @@
 	<br>
 	<br>
 	<br>
+	<br><br>
+		<form action="HomePage.jsp" method = "post">
+		<input type="submit" value="Home">
+		</form>
+		<br>
 	    <form action="LandingPage.jsp" method="post">
 	        <input type="submit" value="Logout">
 	    </form>

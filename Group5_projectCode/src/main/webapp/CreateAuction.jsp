@@ -26,6 +26,7 @@
         <input type="number" id="bidIncrement" name="bidIncrement" step="0.01" required><br>
         <label for="closingDateTime">Closing Date and Time:</label>
         <input type="datetime-local" id="closingDateTime" name="closingDateTime" required><br>
+      <br>
         <input type="submit" value="Create Auction">
         
         <input type="hidden" name="brand" value=<%=request.getParameter("brand")%>>
@@ -37,7 +38,7 @@
         <input type="hidden" name="attr3" value=<%=request.getParameter("attr3")%>>
     </form>
     
-	    <br><br>
+	    <br>
 		<form action="HomePage.jsp" method = "post">
 			<input type="submit" value="Home Page">
 			</form>	
