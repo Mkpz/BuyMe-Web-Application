@@ -30,7 +30,7 @@
 
 				String username = request.getParameter("username") == null ? session.getAttribute("username").toString() : request.getParameter("username"); 
 		    	//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
-				String query = "SELECT auction_id FROM auction JOIN bid USING (auction_id) WHERE seller_username = ? OR bidder_username = ?";
+				String query = "SELECT DISTINCT auction_id FROM auction JOIN bid USING (auction_id) WHERE seller_username = ? OR bidder_username = ?";
 				//Run the query against the database.
 				PreparedStatement ps = con.prepareStatement(query);
 				ps.setString(1,username);

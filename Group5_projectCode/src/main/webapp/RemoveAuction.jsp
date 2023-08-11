@@ -4,15 +4,15 @@
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
 
  
-    <%-- <%
+    <%
     	if (session == null || session.getAttribute("username") == null) {
     		response.sendRedirect("LandingPage.jsp");
     	}
     
-    	if (request.getParameter("auctionID") == null) {
-    		response.sendRedirect("HomePage.jsp");
+    	if (request.getParameter("auction_id") == null) {
+    		response.sendRedirect("CustomerRepHomePage.jsp");
     	}
-    %> --%>
+    %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
