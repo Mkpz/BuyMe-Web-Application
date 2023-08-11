@@ -2,6 +2,14 @@
     pageEncoding="ISO-8859-1" import="group5.*"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+    
+    <%
+    	if (session == null || session.getAttribute("username") ==  null) {
+    		response.sendRedirect("LandingPage.jsp");
+    	}
+    %>
+    
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
