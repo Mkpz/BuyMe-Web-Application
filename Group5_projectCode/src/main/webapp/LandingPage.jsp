@@ -3,11 +3,22 @@
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
     
-    <%-- <%
+    <%
     	if (session != null && session.getAttribute("username") !=  null) {
-    		response.sendRedirect("HomePage.jsp");
+    		if ("END".equals(session.getAttribute("user_type"))) {
+    			response.sendRedirect("HomePage.jsp");
+    		}
+    		else if ("CR".equals(session.getAttribute("user_type"))) {
+    			response.sendRedirect("CustomerRepHomePage.jsp");
+    		}
+    		else if ("ADMIN".equals(session.getAttribute("user_type"))) {
+    			response.sendRedirect("AdminHomePage.jsp");
+    		}
+    		else {
+    			response.sendRedirect("Logout.jsp");
+    		}
     	}
-    %> --%>
+    %>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

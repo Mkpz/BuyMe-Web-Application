@@ -2,7 +2,12 @@
     pageEncoding="ISO-8859-1" import="group5.*"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
-
+    
+    <%
+    	if (session != null && session.getAttribute("username") !=  null) {
+    		response.sendRedirect("LandingPage.jsp");
+    	}
+    %>
 
 <!DOCTYPE html>
 <html>
@@ -38,7 +43,6 @@
 				//extract the type from the query
 				String userType = rs.getString("user_type");
 				session.setAttribute("username", rs.getString("username"));
-				session.setAttribute("password", rs.getString("password"));
 		
 				if(userType.equalsIgnoreCase("END")) {
 					// end user case
