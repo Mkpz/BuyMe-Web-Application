@@ -59,13 +59,16 @@
 			else {
 				// Usert type is CR redirect to CR page successful delete
 				// Execute the querys
-				ps.executeUpdate();
-				out.print("Successfully deleted user");
-				response.sendRedirect("CustomerRepHomePage.jsp");
-				
+				if(username != null && password != null){
+					ps.executeUpdate();
+					out.print("Successfully deleted user");
+					response.sendRedirect("DeleteAccount.jsp");
+
+				}
 			}
 			ps.close();
 			con.close();
+			
 			
 		} catch (Exception e) {
 			out.print(e);
