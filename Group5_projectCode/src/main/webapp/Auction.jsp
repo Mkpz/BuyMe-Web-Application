@@ -194,10 +194,17 @@
         	<input type="submit" value="View Bid History">       
     	</form>
     	<br>
+		<form method="post" action="SimilarItemAuction.jsp">
+        	<input type="hidden" name="auctionID" value=<%=request.getParameter("auctionID")%>>
+        	<input type="submit" value="View Similar">       
+    	</form>
+    	<br>
     	<form method="post" action="AllAuctions.jsp">
         	<input type="hidden" name="auctionID" value=<%=request.getParameter("auctionID")%>>
         	<input type="submit" value="Back">       
     	</form>
+    	
+    	
 		
 	<%
 	
