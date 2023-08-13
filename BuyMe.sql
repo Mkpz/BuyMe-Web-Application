@@ -67,7 +67,7 @@ CREATE TABLE `auction` (
   CONSTRAINT `buyer_username_fk` FOREIGN KEY (`buyer_username`) REFERENCES `users` (`username`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `manufacture_id_fk` FOREIGN KEY (`manufacture_id`) REFERENCES `clothes` (`manufacture_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `seller_username_fk` FOREIGN KEY (`seller_username`) REFERENCES `users` (`username`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,7 +76,7 @@ CREATE TABLE `auction` (
 
 LOCK TABLES `auction` WRITE;
 /*!40000 ALTER TABLE `auction` DISABLE KEYS */;
-INSERT INTO `auction` VALUES (2,1,'2023-08-05 17:38:44','2023-08-14 17:38:00',10.00,'matt',NULL,20.00,5.00),(3,3,'2023-08-05 17:51:05','2023-09-05 17:51:00',50.00,'matt',NULL,60.00,1.00),(4,2,'2023-08-05 17:51:21','2023-08-29 17:51:00',100.00,'matt',NULL,150.00,20.00),(5,1,'2023-08-07 13:03:44','2023-08-03 19:09:00',10.00,'matt','test6',7.00,9.00),(6,1,'2023-08-07 16:59:15','2023-08-23 20:59:00',13.00,'test5',NULL,6.00,1.00);
+INSERT INTO `auction` VALUES (2,1,'2023-08-05 17:38:44','2023-08-14 17:38:00',23.00,'matt',NULL,20.00,5.00),(3,3,'2023-08-05 17:51:05','2023-09-05 17:51:00',53.00,'matt',NULL,60.00,1.00),(4,2,'2023-08-05 17:51:21','2023-08-29 17:51:00',62.00,'matt',NULL,50.00,2.00),(5,1,'2023-08-07 13:03:44','2023-08-03 19:09:00',10.00,'matt','test6',7.00,1.00),(6,1,'2023-08-07 16:59:15','2023-08-23 20:59:00',14.00,'test5',NULL,6.00,1.00),(7,4,'2023-08-12 22:06:49','2023-08-13 12:06:00',40.00,'test6',NULL,20.00,5.00),(8,5,'2023-08-12 22:10:02','2023-08-13 10:09:00',65.00,'test6',NULL,35.00,10.00),(9,6,'2023-08-12 22:22:40','2023-08-13 08:22:00',61.00,'test1@rut',NULL,50.00,2.00),(10,7,'2023-08-12 22:35:00','2023-08-15 22:34:00',33.00,'test1@rut',NULL,22.00,1.00),(11,8,'2023-08-12 22:36:18','2023-08-16 22:36:00',35.00,'test1@rut',NULL,20.00,3.00),(12,9,'2023-08-12 22:38:54','2023-08-16 22:38:00',50.00,'test1@rut',NULL,40.00,1.00),(13,10,'2023-08-12 22:40:28','2023-08-13 13:15:00',50.00,'test1@rut',NULL,40.00,2.00),(14,11,'2023-08-12 22:43:29','2023-08-13 13:20:00',33.00,'test1@rut',NULL,20.00,3.00),(15,12,'2023-08-12 22:44:09','2023-08-14 22:44:00',40.00,'test1@rut',NULL,30.00,3.00);
 /*!40000 ALTER TABLE `auction` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,7 +107,7 @@ CREATE TABLE `bid` (
 
 LOCK TABLES `bid` WRITE;
 /*!40000 ALTER TABLE `bid` DISABLE KEYS */;
-INSERT INTO `bid` VALUES (1,6,'matt',12.00,'2023-08-07 19:19:29'),(2,6,'matt',13.00,'2023-08-07 19:20:46');
+INSERT INTO `bid` VALUES (1,2,'test6',16.00,'2023-08-12 22:11:45'),(1,3,'test6',52.00,'2023-08-12 22:10:49'),(1,4,'test6',60.00,'2023-08-12 22:19:24'),(1,6,'matt',12.00,'2023-08-07 19:19:29'),(1,7,'test1@rut',35.00,'2023-08-12 22:29:30'),(1,8,'test1@rut',55.00,'2023-08-12 22:22:59'),(1,9,'matt',61.00,'2023-08-12 22:46:09'),(1,10,'matt',31.00,'2023-08-12 22:46:59'),(1,13,'matt',50.00,'2023-08-12 22:47:25'),(1,14,'matt',33.00,'2023-08-12 22:45:19'),(2,2,'test1@rut',23.00,'2023-08-12 22:25:23'),(2,3,'test1@rut',53.00,'2023-08-12 22:28:58'),(2,4,'test1@rut',62.00,'2023-08-12 22:32:51'),(2,6,'matt',13.00,'2023-08-07 19:20:46'),(2,7,'test1@rut',40.00,'2023-08-12 22:33:21'),(2,8,'test1@rut',65.00,'2023-08-12 22:24:44'),(2,10,'matt',33.00,'2023-08-12 22:47:12'),(3,6,'test1@rut',14.00,'2023-08-12 22:28:19');
 /*!40000 ALTER TABLE `bid` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,7 +137,7 @@ CREATE TABLE `bidsetting` (
 
 LOCK TABLES `bidsetting` WRITE;
 /*!40000 ALTER TABLE `bidsetting` DISABLE KEYS */;
-INSERT INTO `bidsetting` VALUES (6,'matt',1,0,20.00);
+INSERT INTO `bidsetting` VALUES (2,'test1@rut',0,1,40.00),(2,'test6',0,1,0.01),(3,'test1@rut',0,0,0.01),(4,'test6',0,0,0.01),(6,'matt',1,0,20.00),(7,'matt',1,0,0.01),(14,'matt',1,0,0.01);
 /*!40000 ALTER TABLE `bidsetting` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,7 +164,7 @@ CREATE TABLE `bottoms` (
 
 LOCK TABLES `bottoms` WRITE;
 /*!40000 ALTER TABLE `bottoms` DISABLE KEYS */;
-INSERT INTO `bottoms` VALUES (2,'Activewear','XS','High');
+INSERT INTO `bottoms` VALUES (2,'Activewear','XS','High'),(6,'Sweatpants','L','Mid'),(7,'Jeans','M','High'),(9,'Jeans','M','High'),(12,'Jeans','M','Mid');
 /*!40000 ALTER TABLE `bottoms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,7 +181,7 @@ CREATE TABLE `clothes` (
   `gender` enum('M','F') NOT NULL,
   `age` enum('Infants','Kids','Teenagers','Young Adults','30-50','60+') NOT NULL,
   PRIMARY KEY (`manufacture_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,7 +190,7 @@ CREATE TABLE `clothes` (
 
 LOCK TABLES `clothes` WRITE;
 /*!40000 ALTER TABLE `clothes` DISABLE KEYS */;
-INSERT INTO `clothes` VALUES (1,'Adidas','M','Infants'),(2,'Adidas','M','Infants'),(3,'Adidas','M','Infants');
+INSERT INTO `clothes` VALUES (1,'Adidas','M','Infants'),(2,'Adidas','M','30-50'),(3,'Adidas','M','Infants'),(4,'Levis','F','Young Adults'),(5,'Birkenstock','M','Kids'),(6,'Barbour','M','Teenagers'),(7,'Calvin Klein','F','Teenagers'),(8,'Nike','M','Young Adults'),(9,'Boden','F','30-50'),(10,'Nike','M','Kids'),(11,'Birkenstock','F','Teenagers'),(12,'Levis','M','Young Adults');
 /*!40000 ALTER TABLE `clothes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,7 +245,7 @@ CREATE TABLE `footwear` (
 
 LOCK TABLES `footwear` WRITE;
 /*!40000 ALTER TABLE `footwear` DISABLE KEYS */;
-INSERT INTO `footwear` VALUES (3,'Athletic shoes','1','Black');
+INSERT INTO `footwear` VALUES (3,'Athletic shoes','1','Black'),(5,'Flats','5','Beige'),(10,'Athletic shoes','1','Black');
 /*!40000 ALTER TABLE `footwear` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -272,7 +272,7 @@ CREATE TABLE `top` (
 
 LOCK TABLES `top` WRITE;
 /*!40000 ALTER TABLE `top` DISABLE KEYS */;
-INSERT INTO `top` VALUES (1,'High','XS','none');
+INSERT INTO `top` VALUES (1,'High','XS','none'),(4,'High','M','short'),(8,'Boat','L','short'),(11,'Boat','S','3/4');
 /*!40000 ALTER TABLE `top` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -310,4 +310,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-07 20:18:22
+-- Dump completed on 2023-08-12 22:49:03
