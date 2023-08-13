@@ -72,7 +72,7 @@
 
 		        if (auction_id != null) {
 		        	
-		        	System.out.println("here");
+		  
 		            
 		        	String deleteQuery = "DELETE FROM auction WHERE auction_id = ?";
 		            
