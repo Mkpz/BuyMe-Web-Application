@@ -36,10 +36,12 @@
                 ps.setDouble(5, Double.valueOf(request.getParameter("amount")));
 
                 if (ps.executeUpdate() > 0) {
+                	
+                	//Update current price for auction
                 	String auctionUpdate = "UPDATE auction SET current_price = (SELECT MAX(amount) FROM bid WHERE auction_id = ?) WHERE auction_id = ?";
                     ps = con.prepareStatement(auctionUpdate);
 
-                        // Set the parameters in the PreparedStatement
+                    // Set the parameters in the PreparedStatement
                     ps.setInt(1, Integer.valueOf(request.getParameter("auctionID")));
                     ps.setInt(2, Integer.valueOf(request.getParameter("auctionID")));
                         

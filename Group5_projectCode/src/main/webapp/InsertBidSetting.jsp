@@ -32,7 +32,7 @@
 				
 				if (flag == -1) {
 					// Prepare the query using PreparedStatement
-	                bidSettingQuery = "INSERT INTO bidsetting VALUES (?, ?, ?, ?, ?)";
+	                bidSettingQuery = "INSERT INTO bidsetting VALUES (?, ?, ?, ?, ?, ?)";
 	                ps = con.prepareStatement(bidSettingQuery);
 
 	                // Set the parameters in the PreparedStatement
@@ -41,21 +41,23 @@
 	                ps.setBoolean(3, Boolean.valueOf(request.getParameter("anonymousORnot")));
 	                ps.setBoolean(4, Boolean.valueOf(request.getParameter("autobiddingORnot")));
 	                ps.setDouble(5, Double.valueOf(request.getParameter("autobid_upper_limit")));
+	                ps.setDouble(6, Double.valueOf(request.getParameter("autobid_increment")));
 
 	                ps.executeUpdate();
 	                ps.close();
 				}
 				else if (flag == 1) {
 					// Prepare the query using PreparedStatement
-	                bidSettingQuery = "UPDATE bidsetting SET anonymousORnot = ?, autobiddingORnot = ?, autobid_upper_limit = ? WHERE auction_id = ? AND bidder_username = ?";
+	                bidSettingQuery = "UPDATE bidsetting SET anonymousORnot = ?, autobiddingORnot = ?, autobid_upper_limit = ?, autobid_increment = ? WHERE auction_id = ? AND bidder_username = ?";
 	                ps = con.prepareStatement(bidSettingQuery);
 
 	                // Set the parameters in the PreparedStatement
 	                ps.setBoolean(1, Boolean.valueOf(request.getParameter("anonymousORnot")));
 	                ps.setBoolean(2, Boolean.valueOf(request.getParameter("autobiddingORnot")));
 	                ps.setDouble(3, Double.valueOf(request.getParameter("autobid_upper_limit")));
-	                ps.setInt(4, Integer.valueOf(request.getParameter("auctionID")));
-	                ps.setString(5, session.getAttribute("username").toString());
+	                ps.setDouble(4, Double.valueOf(request.getParameter("autobid_increment")));
+	                ps.setInt(5, Integer.valueOf(request.getParameter("auctionID")));
+	                ps.setString(6, session.getAttribute("username").toString());
 
 	                ps.executeUpdate();
 	                ps.close();

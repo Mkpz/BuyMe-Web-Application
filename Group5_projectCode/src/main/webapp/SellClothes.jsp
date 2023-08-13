@@ -74,7 +74,7 @@
 		</select>
 	   <br>
 	    
-	    <label for="sleeve_length">Rise:</label>
+	    <label for="sleeve_length">Sleeve Length:</label>
 		<select name="attr3" id="sleeve_length">
 		<option value="1">none</option>
   		<option value="2">short</option>
