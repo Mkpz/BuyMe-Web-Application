@@ -27,4 +27,4 @@ Customer Representatives (Can be added by admin account, two samples have been c
   username: test3@rut
   password: password999
 
-Functionality Video Link: (FILL IN)
+Functionality Video Link: https://drive.google.com/file/d/1Kp9Bdw6uRb7EBT0rbVw6GQb53wm-yUiV/view?usp=gmail
